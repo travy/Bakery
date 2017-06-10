@@ -53,46 +53,58 @@ public class StepTest {
 
     @Test
     public void testGetIdRetrievesValue() {
-        Assert.fail("Not implemented.");
+        Assert.assertEquals(DEFAULT_SHARED_ID, step.getId());
     }
 
     @Test
     public void testGetShortDescriptionRetrievesValue() {
-        Assert.fail("Not implemented.");
+        Assert.assertEquals(DEFAULT_SHARED_SHORT_DESCRIPTION, step.getShortDescription());
     }
 
     @Test
     public void testSetShortDescriptionSetsValue() {
-        Assert.fail("Not implemented.");
+        String newShortDescription = DEFAULT_SHARED_SHORT_DESCRIPTION + " this is new";
+        step.setShortDescription(newShortDescription);
+
+        Assert.assertEquals(newShortDescription, step.getShortDescription());
     }
 
     @Test
     public void testGetDescriptionRetrievesValue() {
-        Assert.fail("Not implemented");
+        Assert.assertEquals(DEFAULT_SHARED_DESCRIPTION, step.getDescription());
     }
 
     @Test
     public void testSetDescriptionSetsValue() {
-        Assert.fail("Not implemented.");
+        String newDescription = DEFAULT_SHARED_DESCRIPTION + " this is new";
+        step.setDescription(newDescription);
+
+        Assert.assertEquals(newDescription, step.getDescription());
     }
 
     @Test
     public void testGetVideoUrlRetrievesValue() {
-        Assert.fail("Not implemented.");
+        Assert.assertEquals(DEFAULT_SHARED_VIDEO_URL, step.getVideoUrl());
     }
 
     @Test
     public void testSetVideoUrlSetsValue() {
-        Assert.fail("Not implemented.");
+        String newVideoUrl = DEFAULT_SHARED_VIDEO_URL + " another url";
+        step.setVideoUrl(newVideoUrl);
+
+        Assert.assertEquals(newVideoUrl, step.getVideoUrl());
     }
 
     @Test
     public void testGetThumbnailUrlRetrievesValue() {
-        Assert.fail("Not implemented.");
+        Assert.assertEquals(DEFAULT_SHARED_THUMBNAIL_URL, step.getThumbnailUrl());
     }
 
     @Test
     public void testSetThumbnailUrlIsWorking() {
-        Assert.fail("Not implemented");
+        String newThumbnailUrl = DEFAULT_SHARED_THUMBNAIL_URL + " another url";
+        step.setThumbnailUrl(newThumbnailUrl);
+
+        Assert.assertEquals(newThumbnailUrl, step.getThumbnailUrl());
     }
 }
