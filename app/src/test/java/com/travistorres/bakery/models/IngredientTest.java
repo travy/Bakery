@@ -49,51 +49,68 @@ public class IngredientTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void testIngredientInstantiateThrowsExceptionOnZeroQuantity() {
-        Assert.fail("Not implemented");
+        Ingredient someIngredient = new Ingredient(
+                0,
+                "Measure",
+                "Ingredient"
+        );
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testIngredientInstantiateThrowsExceptionOnNegativeQuantity() {
-        Assert.fail("Not imlemented");
+        Ingredient someIngredient = new Ingredient(
+                -1,
+                "Measure",
+                "Ingredient"
+        );
     }
 
     @Test
     public void testGetQuantityRetrievesCorrectValue() {
-        Assert.fail("Not implemented");
+        Assert.assertEquals(DEFAULT_SHARED_QUANTITY, ingredient.getQuantity());
     }
 
     @Test
     public void testSetQuantityOperatesCorrectly() {
-        Assert.fail("Not implemented");
+        int newQuantity = DEFAULT_SHARED_QUANTITY * 5;
+        ingredient.setQuantity(newQuantity);
+
+        Assert.assertEquals(newQuantity, ingredient.getQuantity());
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testSetQuantityThrowsExceptionWhenZero() {
-        Assert.fail("Not implemented");
+        ingredient.setQuantity(0);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testSetQuantityThrowsExceptionWhenNegative() {
-        Assert.fail("Not implemented");
+        ingredient.setQuantity(-1);
     }
 
     @Test
     public void testGetMeasureRetrievesCorrectValue() {
-        Assert.fail("Not implemented");
+        Assert.assertEquals(DEFAULT_SHARED_MEASURE, ingredient.getMeasure());
     }
 
     @Test
     public void testSetMeasureOperatesCorrectly() {
-        Assert.fail("Not implemented");
+        String newMeasure = "A brand new Measure";
+        ingredient.setMeasure(newMeasure);
+
+        Assert.assertEquals(newMeasure, ingredient.getMeasure());
     }
 
     @Test
     public void testGetIngredientRetrievesValue() {
-        Assert.fail("Not Implemented");
+        Assert.assertEquals(DEFAULT_SHARED_INGREDIENT, ingredient.getIngredient());
     }
 
     @Test
     public void testSetIngredientWorksCorrectly() {
-        Assert.fail("Not Implemented");
+        String newIngredient = "This is a new ingredient";
+        ingredient.setIngredient(newIngredient);
+
+        Assert.assertEquals(newIngredient, ingredient.getIngredient());
     }
 }
