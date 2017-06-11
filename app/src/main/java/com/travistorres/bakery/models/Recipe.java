@@ -151,7 +151,7 @@ public class Recipe {
      */
     private void arrayValidator(Object[] array, String message)
             throws IllegalArgumentException {
-        if (array.length < 0) {
+        if (array.length <= 0) {
             throw new IllegalArgumentException(message);
         }
     }

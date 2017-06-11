@@ -5,9 +5,13 @@
 package com.travistorres.bakery.models;
 
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.Collection;
+
+import static org.junit.Assert.*;
 
 import static org.mockito.Mockito.*;
 
@@ -67,86 +71,152 @@ public class RecipeTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void testRecipeInstantiationThrowsExceptionWithInvalidArrayIngredients() {
-        Assert.fail("Not implemented.");
+        Ingredient[] ingredients = new Ingredient[0];
+        Recipe recipe = new Recipe(
+                this.dish,
+                ingredients,
+                this.steps
+        );
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testRecipeInstantiatedThrowsExceptionWithInvalidArraySteps() {
-        Assert.fail("Not Implemented.");
+        Step[] newSteps = new Step[0];
+        Recipe newRecipe = new Recipe(
+                this.dish,
+                this.ingredients,
+                newSteps
+        );
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testRecipeInstantiationThrowsExceptionWithInvalidCollectionIngredients() {
-        Assert.fail("Not implemented.");
+        Collection<Ingredient> newIngredients = new ArrayList<>();
+        Collection<Step> newSteps = new ArrayList<>();
+        for (int i = 0; i < this.steps.length; ++i) {
+            newSteps.add(this.steps[i]);
+        }
+
+        Recipe newRecipe = new Recipe(
+                this.dish,
+                newIngredients,
+                newSteps
+        );
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testRecipeInstantiatedThrowsExceptionWithInvalidCollectionSteps() {
-        Assert.fail("Not Implemented.");
+        Collection<Step> newSteps = new ArrayList<>();
+        Collection<Ingredient> newIngredients = new ArrayList<>();
+        for (int i = 0; i < this.ingredients.length; ++i) {
+            newIngredients.add(this.ingredients[i]);
+        }
+
+        Recipe newRecipe = new Recipe(
+                this.dish,
+                newIngredients,
+                newSteps
+        );
     }
 
     @Test
     public void testGetDishFunctioning() {
-        Assert.fail("Not implemented.");
+        assertEquals(this.dish, this.recipe.getDish());
     }
 
     @Test
     public void testSetDishWorks() {
-        Assert.fail("Not implemented.");
+        //  create a new dish different from the global mock
+        Dish newDish = mock(Dish.class);
+        assertNotEquals(newDish, this.dish);
+
+        //  set the dish to the new dish
+        this.recipe.setDish(newDish);
+        assertEquals(newDish, this.recipe.getDish());
     }
 
     @Test
     public void testGetIngredientsWorks() {
-        Assert.fail("Not implemented.");
+        assertEquals(this.ingredients, this.recipe.getIngredients());
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testSetIngredientsThrowsExceptionWithInvalidCollection() {
-        Assert.fail("Not implemented.");
+        Collection<Ingredient> newCollection = new ArrayList<>();
+        this.recipe.setIngredients(newCollection);
     }
 
     @Test
     public void testSetIngredientsWorksWithCollection() {
-        Assert.fail("Not implemented.");
+        Collection<Ingredient> newCollection = new ArrayList<>();
+        newCollection.add(mock(Ingredient.class));
+        newCollection.add(mock(Ingredient.class));
+        this.recipe.setIngredients(newCollection);
+
+        assertEquals(newCollection, this.recipe.getIngredients());
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testSetIngredientsThrowsExceptionWithInvalidArray() {
-        Assert.fail("Not implemented.");
+        Ingredient[] newIngredients = new Ingredient[0];
+        this.recipe.setIngredients(newIngredients);
     }
 
     @Test
     public void testSetIngredientsWithArray() {
-        Assert.fail("Not implemented.");
+        Ingredient[] newIngredients = new Ingredient[3];
+        newIngredients[0] = mock(Ingredient.class);
+        newIngredients[1] = mock(Ingredient.class);
+        newIngredients[2] = mock(Ingredient.class);
+
+        this.recipe.setIngredients(newIngredients);
+
+        assertEquals(newIngredients, this.recipe.getIngredients());
     }
 
     @Test
     public void testGetStepsRetrievesCorrectValue() {
-        Assert.fail("Not implemented.");
+        assertEquals(this.steps, this.recipe.getSteps());
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testStepsThrowsExceptionWithInvalidCollection() {
-        Assert.fail("Not implemented.");
+        Collection<Step> newSteps = new ArrayList<>();
+        this.recipe.setSteps(newSteps);
     }
 
     @Test
-    public void testStepsCanBeSetUsingCollection() {
-        Assert.fail("Not implemented.");
+    public void testSetStepsCanBeSetUsingCollection() {
+        Collection<Step> newSteps = new ArrayList<>();
+        newSteps.add(mock(Step.class));
+
+        this.recipe.setSteps(newSteps);
+
+        assertEquals(newSteps, this.recipe.getSteps());
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testStepsThrowsExceptionWithInvalidArray() {
-        Assert.fail("Not implemented.");
+    public void testSetStepsThrowsExceptionWithInvalidArray() {
+        Step[] newSteps = new Step[0];
+        this.recipe.setSteps(newSteps);
     }
 
     @Test
-    public void testStepsCanBeSetUsingArray() {
-        Assert.fail("Not implemented.");
+    public void testSetStepsCanBeSetUsingArray() {
+        int numSteps = 3;
+        Step[] newSteps = new Step[numSteps];
+        for (int i = 0; i < newSteps.length; ++i) {
+            newSteps[i] = mock(Step.class);
+        }
+
+        this.recipe.setSteps(newSteps);
+
+        assertEquals(newSteps, this.recipe.getSteps());
     }
 
     @Test
     public void testNumberOfStepsIsCorrect() {
-        Assert.fail("Not implemented.");
+        int numSteps = this.steps.length;
+        assertEquals(numSteps, this.recipe.numberOfSteps());
     }
 }
