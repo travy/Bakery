@@ -91,26 +91,33 @@ public class RecipeTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void testRecipeInstantiationThrowsExceptionWithInvalidCollectionIngredients() {
-        Collection<Ingredient> newIngredients = new ArrayList<>();
-        Collection<Step> newSteps = new ArrayList<>();
-        for (int i = 0; i < this.steps.length; ++i) {
-            newSteps.add(this.steps[i]);
-        }
+        Collection<Ingredient> newIngredients = mock(ArrayList.class);
+        when(newIngredients.toArray())
+                .thenReturn(new Ingredient[0]);
 
-        Recipe newRecipe = new Recipe(
-                this.dish,
-                newIngredients,
-                newSteps
-        );
+        Collection<Step> newSteps = mock(ArrayList.class);
+        when(newSteps.toArray())
+                .thenReturn(new Step[] {
+                        mock(Step.class),
+                        mock(Step.class),
+                        mock(Step.class)
+                });
+
+        Recipe newRecipe = new Recipe(this.dish, newIngredients, newSteps);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testRecipeInstantiatedThrowsExceptionWithInvalidCollectionSteps() {
-        Collection<Step> newSteps = new ArrayList<>();
-        Collection<Ingredient> newIngredients = new ArrayList<>();
-        for (int i = 0; i < this.ingredients.length; ++i) {
-            newIngredients.add(this.ingredients[i]);
-        }
+        Collection<Step> newSteps = mock(ArrayList.class);
+        when(newSteps.toArray())
+                .thenReturn(new Step[0]);
+
+        Collection<Ingredient> newIngredients = mock(ArrayList.class);
+        when(newIngredients.toArray())
+                .thenReturn(new Ingredient[] {
+                        mock(Ingredient.class),
+                        mock(Ingredient.class)
+                });
 
         Recipe newRecipe = new Recipe(
                 this.dish,
@@ -142,18 +149,25 @@ public class RecipeTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void testSetIngredientsThrowsExceptionWithInvalidCollection() {
-        Collection<Ingredient> newCollection = new ArrayList<>();
+        Collection<Ingredient> newCollection = mock(ArrayList.class);
+        when(newCollection.toArray())
+                .thenReturn(new Ingredient[0]);
+
         this.recipe.setIngredients(newCollection);
     }
 
     @Test
     public void testSetIngredientsWorksWithCollection() {
-        Collection<Ingredient> newCollection = new ArrayList<>();
-        newCollection.add(mock(Ingredient.class));
-        newCollection.add(mock(Ingredient.class));
+        Collection<Ingredient> newCollection = mock(Collection.class);
+        when(newCollection.toArray())
+                .thenReturn(new Ingredient [] {
+                    mock(Ingredient.class),
+                    mock(Ingredient.class)
+                });
+
         this.recipe.setIngredients(newCollection);
 
-        assertEquals(newCollection, this.recipe.getIngredients());
+        assertEquals(newCollection.toArray(), this.recipe.getIngredients());
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -181,18 +195,24 @@ public class RecipeTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void testStepsThrowsExceptionWithInvalidCollection() {
-        Collection<Step> newSteps = new ArrayList<>();
+        Collection<Step> newSteps = mock(ArrayList.class);
+        when(newSteps.toArray())
+                .thenReturn(new Step[0]);
+
         this.recipe.setSteps(newSteps);
     }
 
     @Test
     public void testSetStepsCanBeSetUsingCollection() {
-        Collection<Step> newSteps = new ArrayList<>();
-        newSteps.add(mock(Step.class));
+        Collection<Step> newSteps = mock(ArrayList.class);
+        when(newSteps.toArray())
+                .thenReturn(new Step[] {
+                        mock(Step.class)
+                });
 
         this.recipe.setSteps(newSteps);
 
-        assertEquals(newSteps, this.recipe.getSteps());
+        assertEquals(newSteps.toArray(), this.recipe.getSteps());
     }
 
     @Test(expected = IllegalArgumentException.class)
