@@ -95,4 +95,14 @@ public class Ingredient {
     public void setIngredient(String ingredient) {
         this.ingredient = ingredient;
     }
+
+    /**
+     * Outputs the textual description for the ingredient.
+     *
+     * @return ingredient description
+     */
+    @Override
+    public String toString() {
+        return this.ingredient + " requires " + this.quantity + " " + this.measure;
+    }
 }

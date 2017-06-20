@@ -5,9 +5,10 @@
 package com.travistorres.bakery.models;
 
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import static org.junit.Assert.*;
 
 /**
  * IngredientTest
@@ -19,7 +20,7 @@ import org.junit.Test;
  */
 
 public class IngredientTest {
-    private static final int DEFAULT_SHARED_QUANTITY = 5;
+    private static final double DEFAULT_SHARED_QUANTITY = 5;
     private static final String DEFAULT_SHARED_MEASURE = "Cups";
     private static final String DEFAULT_SHARED_INGREDIENT = "Flour";
 
@@ -67,15 +68,15 @@ public class IngredientTest {
 
     @Test
     public void testGetQuantityRetrievesCorrectValue() {
-        Assert.assertEquals(DEFAULT_SHARED_QUANTITY, ingredient.getQuantity(), 0.0);
+        assertEquals(DEFAULT_SHARED_QUANTITY, ingredient.getQuantity(), 0.0);
     }
 
     @Test
     public void testSetQuantityOperatesCorrectly() {
-        int newQuantity = DEFAULT_SHARED_QUANTITY * 5;
+        double newQuantity = DEFAULT_SHARED_QUANTITY * 5.0;
         ingredient.setQuantity(newQuantity);
 
-        Assert.assertEquals(newQuantity, ingredient.getQuantity(), 0.0);
+        assertEquals(newQuantity, ingredient.getQuantity(), 0.0);
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -90,7 +91,7 @@ public class IngredientTest {
 
     @Test
     public void testGetMeasureRetrievesCorrectValue() {
-        Assert.assertEquals(DEFAULT_SHARED_MEASURE, ingredient.getMeasure());
+        assertEquals(DEFAULT_SHARED_MEASURE, ingredient.getMeasure());
     }
 
     @Test
@@ -98,12 +99,12 @@ public class IngredientTest {
         String newMeasure = "A brand new Measure";
         ingredient.setMeasure(newMeasure);
 
-        Assert.assertEquals(newMeasure, ingredient.getMeasure());
+        assertEquals(newMeasure, ingredient.getMeasure());
     }
 
     @Test
     public void testGetIngredientRetrievesValue() {
-        Assert.assertEquals(DEFAULT_SHARED_INGREDIENT, ingredient.getIngredient());
+        assertEquals(DEFAULT_SHARED_INGREDIENT, ingredient.getIngredient());
     }
 
     @Test
@@ -111,6 +112,15 @@ public class IngredientTest {
         String newIngredient = "This is a new ingredient";
         ingredient.setIngredient(newIngredient);
 
-        Assert.assertEquals(newIngredient, ingredient.getIngredient());
+        assertEquals(newIngredient, ingredient.getIngredient());
+    }
+
+    @Test
+    public void testToStringDescribesIngredient() {
+        String ingredientString = ingredient.toString();
+        String actualDescription = DEFAULT_SHARED_INGREDIENT + " requires " +
+                DEFAULT_SHARED_QUANTITY + " " + DEFAULT_SHARED_MEASURE;
+
+        assertEquals(ingredientString, actualDescription);
     }
 }
