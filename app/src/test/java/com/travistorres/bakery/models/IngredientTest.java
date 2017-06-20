@@ -67,7 +67,7 @@ public class IngredientTest {
 
     @Test
     public void testGetQuantityRetrievesCorrectValue() {
-        Assert.assertEquals(DEFAULT_SHARED_QUANTITY, ingredient.getQuantity());
+        Assert.assertEquals(DEFAULT_SHARED_QUANTITY, ingredient.getQuantity(), 0.0);
     }
 
     @Test
@@ -75,7 +75,7 @@ public class IngredientTest {
         int newQuantity = DEFAULT_SHARED_QUANTITY * 5;
         ingredient.setQuantity(newQuantity);
 
-        Assert.assertEquals(newQuantity, ingredient.getQuantity());
+        Assert.assertEquals(newQuantity, ingredient.getQuantity(), 0.0);
     }
 
     @Test(expected = IllegalArgumentException.class)
