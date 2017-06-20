@@ -164,4 +164,24 @@ public class Recipe {
     public int numberOfSteps() {
         return steps.length;
     }
+
+    /**
+     * Full description of the Recipe.
+     *
+     * @return Returns the name of the dish.
+     */
+    @Override
+    public String toString() {
+        String recipe = dish.toString() + ":\n";
+        for (Ingredient ingredient : ingredients) {
+            recipe += ingredient.toString() + ", ";
+        }
+
+        recipe += ":\n";
+        for (Step step : steps) {
+            recipe += step.toString() + "\n";
+        }
+
+        return recipe;
+    }
 }

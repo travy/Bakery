@@ -239,4 +239,12 @@ public class RecipeTest {
         int numSteps = this.steps.length;
         assertEquals(numSteps, this.recipe.numberOfSteps());
     }
+
+    @Test
+    public void testToStringReturnsNameOfDish() {
+        String nameOfDish = dish.toString();
+        String stringOfRecipe = recipe.toString();
+
+        assertEquals(nameOfDish, stringOfRecipe);
+    }
 }
