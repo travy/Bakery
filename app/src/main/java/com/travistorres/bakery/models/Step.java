@@ -120,4 +120,9 @@ public class Step {
     public void setThumbnailUrl(@Nullable String thumbnailUrl) {
         this.thumbnailUrl = thumbnailUrl;
     }
+
+    @Override
+    public String toString() {
+        return shortDescription;
+    }
 }

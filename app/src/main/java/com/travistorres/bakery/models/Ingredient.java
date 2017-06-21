@@ -14,7 +14,7 @@ package com.travistorres.bakery.models;
  */
 
 public class Ingredient {
-    private int quantity;
+    private double quantity;
     private String measure;
     private String ingredient;
 
@@ -28,7 +28,7 @@ public class Ingredient {
      * @throws IllegalArgumentException When the value supplied for the quantity is less tha or
      * equal to zero.
      */
-    public Ingredient(int quantity, String measure, String ingredient)
+    public Ingredient(double quantity, String measure, String ingredient)
             throws IllegalArgumentException {
         setQuantity(quantity);
         setMeasure(measure);
@@ -40,7 +40,7 @@ public class Ingredient {
      *
      * @return quantity
      */
-    public int getQuantity() {
+    public double getQuantity() {
         return quantity;
     }
 
@@ -51,7 +51,7 @@ public class Ingredient {
      *
      * @throws IllegalArgumentException When the quantity is less than or equal to zero.
      */
-    public void setQuantity(int quantity)
+    public void setQuantity(double quantity)
             throws IllegalArgumentException {
         if (quantity <= 0) {
             throw new IllegalArgumentException("The value specified for an Ingredients quantity must be greater than 0");
@@ -94,5 +94,15 @@ public class Ingredient {
      */
     public void setIngredient(String ingredient) {
         this.ingredient = ingredient;
+    }
+
+    /**
+     * Outputs the textual description for the ingredient.
+     *
+     * @return ingredient description
+     */
+    @Override
+    public String toString() {
+        return this.ingredient + " requires " + this.quantity + " " + this.measure;
     }
 }

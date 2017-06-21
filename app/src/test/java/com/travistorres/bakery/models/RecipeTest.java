@@ -25,7 +25,11 @@ import static org.mockito.Mockito.*;
  */
 
 public class RecipeTest {
-    private Dish dish;
+    public static final int DEFAULT_SHARED_DISH_ID = 8;
+    public static final String DEFAULT_SHARED_DISH_NAME = "Apple Pie";
+    public static final double DEFAULT_SHARED_DISH_SERVINGS = 3;
+    public static final String DEFAULT_SHARED_IMAGE = null;
+
     private Ingredient[] ingredients;
     private Step[] steps;
     private Recipe recipe;
@@ -36,8 +40,6 @@ public class RecipeTest {
      */
     @Before
     public void setUp() {
-        this.dish = mock(Dish.class);
-
         Ingredient[] ingredients = new Ingredient[3];
         ingredients[0] = mock(Ingredient.class);
         ingredients[1] = mock(Ingredient.class);
@@ -51,7 +53,10 @@ public class RecipeTest {
         this.steps = steps;
 
         this.recipe = new Recipe(
-                this.dish,
+                DEFAULT_SHARED_DISH_ID,
+                DEFAULT_SHARED_DISH_NAME,
+                DEFAULT_SHARED_DISH_SERVINGS,
+                DEFAULT_SHARED_IMAGE,
                 this.ingredients,
                 this.steps
         );
@@ -63,7 +68,6 @@ public class RecipeTest {
      */
     @After
     public void tearDown() {
-        this.dish = null;
         this.ingredients = null;
         this.steps = null;
         this.recipe = null;
@@ -73,7 +77,10 @@ public class RecipeTest {
     public void testRecipeInstantiationThrowsExceptionWithInvalidArrayIngredients() {
         Ingredient[] ingredients = new Ingredient[0];
         Recipe recipe = new Recipe(
-                this.dish,
+                DEFAULT_SHARED_DISH_ID,
+                DEFAULT_SHARED_DISH_NAME,
+                DEFAULT_SHARED_DISH_SERVINGS,
+                DEFAULT_SHARED_IMAGE,
                 ingredients,
                 this.steps
         );
@@ -83,7 +90,10 @@ public class RecipeTest {
     public void testRecipeInstantiatedThrowsExceptionWithInvalidArraySteps() {
         Step[] newSteps = new Step[0];
         Recipe newRecipe = new Recipe(
-                this.dish,
+                DEFAULT_SHARED_DISH_ID,
+                DEFAULT_SHARED_DISH_NAME,
+                DEFAULT_SHARED_DISH_SERVINGS,
+                DEFAULT_SHARED_IMAGE,
                 this.ingredients,
                 newSteps
         );
@@ -103,7 +113,13 @@ public class RecipeTest {
                         mock(Step.class)
                 });
 
-        Recipe newRecipe = new Recipe(this.dish, newIngredients, newSteps);
+        Recipe newRecipe = new Recipe(
+                DEFAULT_SHARED_DISH_ID,
+                DEFAULT_SHARED_DISH_NAME,
+                DEFAULT_SHARED_DISH_SERVINGS,
+                DEFAULT_SHARED_IMAGE,
+                newIngredients,
+                newSteps);
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -120,26 +136,13 @@ public class RecipeTest {
                 });
 
         Recipe newRecipe = new Recipe(
-                this.dish,
+                DEFAULT_SHARED_DISH_ID,
+                DEFAULT_SHARED_DISH_NAME,
+                DEFAULT_SHARED_DISH_SERVINGS,
+                DEFAULT_SHARED_IMAGE,
                 newIngredients,
                 newSteps
         );
-    }
-
-    @Test
-    public void testGetDishFunctioning() {
-        assertEquals(this.dish, this.recipe.getDish());
-    }
-
-    @Test
-    public void testSetDishWorks() {
-        //  create a new dish different from the global mock
-        Dish newDish = mock(Dish.class);
-        assertNotEquals(newDish, this.dish);
-
-        //  set the dish to the new dish
-        this.recipe.setDish(newDish);
-        assertEquals(newDish, this.recipe.getDish());
     }
 
     @Test
@@ -238,5 +241,60 @@ public class RecipeTest {
     public void testNumberOfStepsIsCorrect() {
         int numSteps = this.steps.length;
         assertEquals(numSteps, this.recipe.numberOfSteps());
+    }
+
+    @Test
+    public void testToStringReturnsNameOfDish() {
+        String stringOfRecipe = recipe.toString();
+
+        assertEquals(DEFAULT_SHARED_DISH_NAME, stringOfRecipe);
+    }
+
+    @Test
+    public void testGetIdRetrievesCorrectValue() {
+        assertEquals(DEFAULT_SHARED_DISH_ID, recipe.getId());
+    }
+
+    @Test
+    public void testGetNameRetrievesCorrectValue() {
+        assertEquals(DEFAULT_SHARED_DISH_NAME, recipe.getName());
+    }
+
+    @Test
+    public void testSetNameFunctionsCorrectly() {
+        String newName = "Pizza with Bacon Bits";
+        assertNotEquals(newName, recipe.getName());
+
+        recipe.setName(newName);
+
+        assertEquals(newName, recipe.getName());
+    }
+
+    @Test
+    public void testGetServingsRetrievesTheCorrectValue() {
+        assertEquals(DEFAULT_SHARED_DISH_SERVINGS, recipe.getServings(), 0.0);
+    }
+
+    @Test
+    public void testSetServingsFunctionsCorrectly() {
+        double newServings = 8.0;
+        assertNotEquals(newServings, recipe.getServings(), 0.0);
+
+        recipe.setServings(newServings);
+        assertEquals(newServings, recipe.getServings(), 0.0);
+    }
+
+    @Test
+    public void testGetImageReturnsCorrectValue() {
+        assertEquals(DEFAULT_SHARED_IMAGE, recipe.getImage());
+    }
+
+    @Test
+    public void testSetImageSetsCorrectValue() {
+        String newImage = "Flabbergastered.bmp";
+        assertNotEquals(newImage, recipe.getImage());
+
+        recipe.setImage(newImage);
+        assertEquals(newImage, recipe.getImage());
     }
 }

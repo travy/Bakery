@@ -4,6 +4,8 @@
 
 package com.travistorres.bakery.models;
 
+import android.support.annotation.Nullable;
+
 import java.util.Collection;
 
 /**
@@ -17,21 +19,31 @@ import java.util.Collection;
  */
 
 public class Recipe {
-    private Dish dish;
+    private int id;
+    private String name;
+    private double servings;
+    private String image;
     private Ingredient[] ingredients;
     private Step[] steps;
 
     /**
-     * Constructs a new Recipe with step by step instructions and an ingredients list.
+     * Constructs a new Recipe.
      *
-     * @param dish
+     * @param id
+     * @param name
+     * @param servings
+     * @param image
      * @param ingredients
      * @param steps
      *
      * @throws IllegalArgumentException When either the ingredients or steps is empty.
      */
-    public Recipe(Dish dish, Ingredient[] ingredients, Step[] steps) {
-        setDish(dish);
+    public Recipe(int id, String name, double servings, @Nullable String image, Ingredient[] ingredients, Step[] steps) {
+        this.id = id;
+        this.name = name;
+        this.servings = servings;
+        this.image = image;
+
         setIngredients(ingredients);
         setSteps(steps);
     }
@@ -39,34 +51,86 @@ public class Recipe {
     /**
      * Constructs a new Recipe with step by step instructions and an ingredients list.
      *
-     * @param dish
+     * @param id
+     * @param name
+     * @param servings
+     * @param image
      * @param ingredients
      * @param steps
      *
      * @throws IllegalArgumentException When either the ingredients or steps is empty.
      */
-    public Recipe(Dish dish, Collection<Ingredient> ingredients, Collection<Step> steps) {
-        setDish(dish);
+    public Recipe(int id, String name, double servings, @Nullable String image, Collection<Ingredient> ingredients, Collection<Step> steps) {
+        this.id = id;
+        this.name = name;
+        this.servings = servings;
+        this.image = image;
+
         setIngredients(ingredients);
         setSteps(steps);
     }
 
     /**
-     * Retrieves information regarding the dish.
+     * Retrieves the database id for the dish.
      *
-     * @return dish
+     * @return id.
      */
-    public Dish getDish() {
-        return dish;
+    public int getId() {
+        return this.id;
     }
 
     /**
-     * Sets information regarding the Dish.
+     * Retrieves the name of the dish.
      *
-     * @param dish
+     * @return name
      */
-    public void setDish(Dish dish) {
-        this.dish = dish;
+    public String getName() {
+        return this.name;
+    }
+
+    /**
+     * Specifies the name of the recipe.
+     *
+     * @param name
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * Acquires the number of servings provided.
+     *
+     * @return servings
+     */
+    public double getServings() {
+        return this.servings;
+    }
+
+    /**
+     * Specifies the number of servings provided.
+     *
+     * @param servings
+     */
+    public void setServings(double servings) {
+        this.servings = servings;
+    }
+
+    /**
+     * Acquires the image resource.
+     *
+     * @return image
+     */
+    public String getImage() {
+        return this.image;
+    }
+
+    /**
+     * Specifies the image resource.
+     *
+     * @param image
+     */
+    public void setImage(@Nullable String image) {
+        this.image = image;
     }
 
     /**
@@ -163,5 +227,15 @@ public class Recipe {
      */
     public int numberOfSteps() {
         return steps.length;
+    }
+
+    /**
+     * Full description of the Recipe.
+     *
+     * @return Returns the name of the dish.
+     */
+    @Override
+    public String toString() {
+        return name;
     }
 }
