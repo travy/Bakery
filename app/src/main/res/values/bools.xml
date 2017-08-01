@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+
+    <bool name="should_reverse_layout_for_recipes_list_layout_manager">false</bool>
+    <bool name="should_attatch_to_root_while_inflating_recipe_item">false</bool>
+
+</resources>

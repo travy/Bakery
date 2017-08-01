@@ -5,12 +5,13 @@
 package com.travistorres.bakery.activities;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,6 +39,8 @@ import retrofit2.Response;
  * @version June 21, 2017
  */
 
+//  TODO:  separate all Recycler View helper classes into their own files
+
 public class RecipeListActivity extends AppCompatActivity
         implements OnRecipeListItemClickedListener {
     private RecyclerView mRecipesRv;
@@ -47,7 +50,10 @@ public class RecipeListActivity extends AppCompatActivity
 
     @Override
     public void onClick(Recipe recipe) {
-        Toast.makeText(this, recipe.getName(), Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, RecipeActivity.class);
+        intent.putExtra(getString(R.string.extra_key_for_recipe), recipe);
+
+        startActivity(intent);
     }
 
     private class RecipeListViewHolder extends RecyclerView.ViewHolder
@@ -96,7 +102,11 @@ public class RecipeListActivity extends AppCompatActivity
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             Context context = parent.getContext();
             LayoutInflater inflater = LayoutInflater.from(context);
-            View view = inflater.inflate(R.layout.activity_recipe_list_item, parent, false);
+            Resources res = getResources();
+            View view = inflater.inflate(
+                    R.layout.activity_recipe_list_item,
+                    parent,
+                    res.getBoolean(R.bool.should_attatch_to_root_while_inflating_recipe_item));
 
             return new RecipeListViewHolder(view, this, clickHandler);
         }
@@ -107,6 +117,7 @@ public class RecipeListActivity extends AppCompatActivity
 
             RecipeListViewHolder recipeView = (RecipeListViewHolder) holder;
 
+            //  TODO:  replace recipe.getIngredients().length with recipe.numberOfIngredients()
             recipeView.ingredientsCountTextView.setText(Integer.toString(recipe.getIngredients().length));
             recipeView.servingsCountTextView.setText(Integer.toString(recipe.numberOfSteps()));
             recipeView.titleTextView.setText(recipe.getName());
@@ -140,7 +151,10 @@ public class RecipeListActivity extends AppCompatActivity
 
         @Override
         public void onFailure(Call<List<Recipe>> call, Throwable t) {
-            Log.d(getClass().getSimpleName(), "Could not load Movies");
+            Toast.makeText(
+                    RecipeListActivity.this,
+                    getString(R.string.error_could_not_load_movies),
+                    Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -156,10 +170,14 @@ public class RecipeListActivity extends AppCompatActivity
         setContentView(R.layout.activity_recipe_list);
 
         recipesApiUrl = getString(R.string.recipes_api_url);
-
         recipesListAdapter = new RecipesAdapter(this);
 
-        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this, 2, LinearLayoutManager.VERTICAL, false);
+        Resources res = getResources();
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(
+                this,
+                res.getInteger(R.integer.grid_layout_recipes_list_num_columns),
+                LinearLayoutManager.VERTICAL,
+                res.getBoolean(R.bool.should_reverse_layout_for_recipes_list_layout_manager));
 
         mRecipesRv = (RecyclerView) findViewById(R.id.recipes_list_rv);
         mRecipesRv.setLayoutManager(layoutManager);

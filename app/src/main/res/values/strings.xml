@@ -1,6 +1,12 @@
 <resources>
+
     <string name="app_name">Bakery</string>
     <string name="title_item_detail">Item Detail</string>
 
     <string name="recipes_api_url" translatable="false">https://d17h27t6h515a5.cloudfront.net</string>
+
+    <string name="extra_key_for_recipe" translatable="false">recipe-extra-data</string>
+
+    <string name="error_could_not_load_movies" translatable="true">Was unable to load movies</string>
+
 </resources>
