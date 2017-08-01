@@ -16,8 +16,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.travistorres.bakery.R;
+import com.travistorres.bakery.interfaces.OnRecipeListItemClickedListener;
 import com.travistorres.bakery.models.Recipe;
 import com.travistorres.bakery.networking.RecipeLoader;
 
@@ -36,30 +38,59 @@ import retrofit2.Response;
  * @version June 21, 2017
  */
 
-public class RecipeListActivity extends AppCompatActivity {
+public class RecipeListActivity extends AppCompatActivity
+        implements OnRecipeListItemClickedListener {
     private RecyclerView mRecipesRv;
     private RecipesAdapter recipesListAdapter;
 
     private String recipesApiUrl;
 
-    private class RecipeListViewHolder extends RecyclerView.ViewHolder {
+    @Override
+    public void onClick(Recipe recipe) {
+        Toast.makeText(this, recipe.getName(), Toast.LENGTH_SHORT).show();
+    }
+
+    private class RecipeListViewHolder extends RecyclerView.ViewHolder
+            implements View.OnClickListener {
         public ImageView thumbnailImageView;
         public TextView ingredientsCountTextView;
         public TextView servingsCountTextView;
         public TextView titleTextView;
 
-        public RecipeListViewHolder(View itemView) {
+        private RecipesAdapter adapter;
+        private OnRecipeListItemClickedListener clickHandler;
+
+        public RecipeListViewHolder(View itemView, RecipesAdapter recipeAdapter, OnRecipeListItemClickedListener recipeClickHandler) {
             super(itemView);
 
             thumbnailImageView = (ImageView) itemView.findViewById(R.id.recipe_thumbnail);
             ingredientsCountTextView = (TextView) itemView.findViewById(R.id.ingredients_count);
             servingsCountTextView = (TextView) itemView.findViewById(R.id.servings_count);
             titleTextView = (TextView) itemView.findViewById(R.id.recipe_name);
+
+            adapter = recipeAdapter;
+            clickHandler = recipeClickHandler;
+
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            int pos = getAdapterPosition();
+            Recipe recipe = adapter.getRecipeAt(pos);
+
+            clickHandler.onClick(recipe);
         }
     }
 
     private class RecipesAdapter extends RecyclerView.Adapter {
         private List<Recipe> recipesList;
+        private OnRecipeListItemClickedListener clickHandler;
+
+
+        public RecipesAdapter(OnRecipeListItemClickedListener recipeClickHandler) {
+            clickHandler = recipeClickHandler;
+        }
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -67,7 +98,7 @@ public class RecipeListActivity extends AppCompatActivity {
             LayoutInflater inflater = LayoutInflater.from(context);
             View view = inflater.inflate(R.layout.activity_recipe_list_item, parent, false);
 
-            return new RecipeListViewHolder(view);
+            return new RecipeListViewHolder(view, this, clickHandler);
         }
 
         @Override
@@ -84,6 +115,10 @@ public class RecipeListActivity extends AppCompatActivity {
         @Override
         public int getItemCount() {
             return recipesList == null ? 0 : recipesList.size();
+        }
+
+        public Recipe getRecipeAt(int position) {
+            return recipesList.get(position);
         }
 
         public boolean setRecipeList(List<Recipe> list) {
@@ -122,7 +157,7 @@ public class RecipeListActivity extends AppCompatActivity {
 
         recipesApiUrl = getString(R.string.recipes_api_url);
 
-        recipesListAdapter = new RecipesAdapter();
+        recipesListAdapter = new RecipesAdapter(this);
 
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this, 2, LinearLayoutManager.VERTICAL, false);
 
