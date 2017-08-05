@@ -4,6 +4,9 @@
 
 package com.travistorres.bakery.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Ingredient
  *
@@ -13,7 +16,11 @@ package com.travistorres.bakery.models;
  * @version June 10, 2017s
  */
 
-public class Ingredient {
+//  TODO:  write documentation
+//  TODO:  test parcelability
+
+public class Ingredient
+        implements Parcelable {
     private double quantity;
     private String measure;
     private String ingredient;
@@ -104,5 +111,35 @@ public class Ingredient {
     @Override
     public String toString() {
         return this.ingredient + " requires " + this.quantity + " " + this.measure;
+    }
+
+    public static Parcelable.Creator<Ingredient> CREATOR = new Parcelable.Creator<Ingredient> () {
+        @Override
+        public Ingredient createFromParcel(Parcel source) {
+            return new Ingredient(source);
+        }
+
+        @Override
+        public Ingredient[] newArray(int size) {
+            return new Ingredient[size];
+        }
+    };
+
+    public Ingredient(Parcel parcel) {
+        quantity = parcel.readDouble();
+        measure = parcel.readString();
+        ingredient = parcel.readString();
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeDouble(quantity);
+        dest.writeString(measure);
+        dest.writeString(ingredient);
     }
 }

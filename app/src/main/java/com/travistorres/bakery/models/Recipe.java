@@ -21,6 +21,7 @@ import java.util.Collection;
  */
 
 //  TODO:  document new parcelable implementation
+//  TODO:  test parcelability
 
 public class Recipe implements Parcelable {
     private int id;
@@ -278,8 +279,12 @@ public class Recipe implements Parcelable {
         dest.writeString(name);
         dest.writeDouble(servings);
         dest.writeString(image);
-        //  TODO:  add ingredients
-        //  TODO:  add steps
+
+        Ingredient[] ingredients = getIngredients();
+        dest.writeArray(ingredients);
+
+        Step[] steps = getSteps();
+        dest.writeArray(steps);
     }
 
     //  TODO:  implement numberOfIngredients() : int

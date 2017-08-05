@@ -4,6 +4,8 @@
 
 package com.travistorres.bakery.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.support.annotation.Nullable;
 
 /**
@@ -15,7 +17,11 @@ import android.support.annotation.Nullable;
  * @version June 10, 2017
  */
 
-public class Step {
+//  TODO:  write documentation
+//  TODO:  test parcelablility
+
+public class Step
+        implements Parcelable {
     private int id;
     private String shortDescription;
     private String description;
@@ -124,5 +130,39 @@ public class Step {
     @Override
     public String toString() {
         return shortDescription;
+    }
+
+    public static final Parcelable.Creator<Step> CREATOR = new Parcelable.Creator<Step>() {
+        @Override
+        public Step createFromParcel(Parcel source) {
+            return new Step(source);
+        }
+
+        @Override
+        public Step[] newArray(int size) {
+            return new Step[size];
+        }
+    };
+
+    public Step(Parcel parcel) {
+        id = parcel.readInt();
+        shortDescription = parcel.readString();
+        description = parcel.readString();
+        videoUrl = parcel.readString();
+        thumbnailUrl = parcel.readString();
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeString(shortDescription);
+        dest.writeString(description);
+        dest.writeString(videoUrl);
+        dest.writeString(thumbnailUrl);
     }
 }
