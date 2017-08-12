@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +14,7 @@ import android.widget.TextView;
 import com.travistorres.bakery.R;
 import com.travistorres.bakery.models.Ingredient;
 import com.travistorres.bakery.models.Recipe;
+import com.travistorres.bakery.recyclerviews.viewholders.RecipeIngredientViewHolder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,20 +24,6 @@ public class RecipeActivity extends AppCompatActivity {
 
     private TextView recipeTitleTextView;
     private RecyclerView ingredientsRecyclerView;
-
-    private class RecipeIngredientsViewHolder extends RecyclerView.ViewHolder {
-        public TextView measurementTypeTextView;
-        public TextView measurementQuantityTextView;
-        public TextView ingredientNameTextView;
-
-        public RecipeIngredientsViewHolder(View itemView) {
-            super(itemView);
-
-            measurementTypeTextView = (TextView) itemView.findViewById(R.id.ingredient_measurement_type);
-            measurementQuantityTextView = (TextView) itemView.findViewById(R.id.ingredient_measurement_qty);
-            ingredientNameTextView = (TextView) itemView.findViewById(R.id.ingredient);
-        }
-    }
 
     private class RecipeIngredientsAdapter extends RecyclerView.Adapter {
         private List<Ingredient> ingredientList;
@@ -51,7 +37,7 @@ public class RecipeActivity extends AppCompatActivity {
                     parent,
                     false);
 
-            return new RecipeIngredientsViewHolder(view);
+            return new RecipeIngredientViewHolder(view);
         }
 
         @Override
@@ -61,10 +47,10 @@ public class RecipeActivity extends AppCompatActivity {
             String quantity = Double.toString(ingredient.getQuantity());
             String unitOfMeasure = ingredient.getMeasure();
 
-            RecipeIngredientsViewHolder view = (RecipeIngredientsViewHolder) holder;
-            view.ingredientNameTextView.setText(ingredientName);
-            view.measurementQuantityTextView.setText(quantity);
-            view.measurementTypeTextView.setText(unitOfMeasure);
+            RecipeIngredientViewHolder view = (RecipeIngredientViewHolder) holder;
+            view.getIngredientNameTextView().setText(ingredientName);
+            view.getMeasurementQuantityTextView().setText(quantity);
+            view.getMeasurementTypeTextView().setText(unitOfMeasure);
         }
 
         public List<Ingredient> setIngredients(Ingredient[] ingredients) {
