@@ -3,6 +3,8 @@
     <string name="app_name">Bakery</string>
     <string name="title_item_detail">Item Detail</string>
 
+    <string name="title_ingredients_section" translatable="true">Ingredients</string>
+
     <string name="recipes_api_url" translatable="false">https://d17h27t6h515a5.cloudfront.net</string>
 
     <string name="extra_key_for_recipe" translatable="false">recipe-extra-data</string>

@@ -7,7 +7,9 @@ package com.travistorres.bakery.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.Nullable;
+import android.util.Log;
 
+import java.util.Arrays;
 import java.util.Collection;
 
 /**
@@ -81,7 +83,13 @@ public class Recipe implements Parcelable {
         servings = parcel.readDouble();
         image = parcel.readString();
         //  TODO:  load ingredients
-        ingredients = null;
+        Object[] data = parcel.readArray(Ingredient.class.getClassLoader());
+        ingredients = new Ingredient[data.length];
+        for (int i = 0; i < data.length; ++i) {
+            ingredients[i] = (Ingredient) data[i];
+        }
+        Log.d(getClass().getSimpleName(), "Reading:  " + Arrays.toString(ingredients));
+
         //  TODO:  load steps
         steps = null;
     }
@@ -282,6 +290,7 @@ public class Recipe implements Parcelable {
 
         Ingredient[] ingredients = getIngredients();
         dest.writeArray(ingredients);
+        Log.d(getClass().getSimpleName(), "Writing:  " + Arrays.toString(ingredients));
 
         Step[] steps = getSteps();
         dest.writeArray(steps);
