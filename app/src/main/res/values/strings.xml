@@ -4,6 +4,7 @@
     <string name="title_item_detail">Item Detail</string>
 
     <string name="title_ingredients_section" translatable="true">Ingredients</string>
+    <string name="title_steps_section" translatable="true">Steps</string>
 
     <string name="recipes_api_url" translatable="false">https://d17h27t6h515a5.cloudfront.net</string>
 

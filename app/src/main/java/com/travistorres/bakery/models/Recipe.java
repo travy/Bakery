@@ -82,16 +82,18 @@ public class Recipe implements Parcelable {
         name = parcel.readString();
         servings = parcel.readDouble();
         image = parcel.readString();
-        //  TODO:  load ingredients
+        //  TODO-  create a parcel array reader method/utility
         Object[] data = parcel.readArray(Ingredient.class.getClassLoader());
         ingredients = new Ingredient[data.length];
         for (int i = 0; i < data.length; ++i) {
             ingredients[i] = (Ingredient) data[i];
         }
-        Log.d(getClass().getSimpleName(), "Reading:  " + Arrays.toString(ingredients));
 
-        //  TODO:  load steps
-        steps = null;
+        data = parcel.readArray(Ingredient.class.getClassLoader());
+        steps = new Step[data.length];
+        for (int i = 0; i < data.length; ++i) {
+            steps[i] = (Step) data[i];
+        }
     }
 
     /**
@@ -290,9 +292,7 @@ public class Recipe implements Parcelable {
 
         Ingredient[] ingredients = getIngredients();
         dest.writeArray(ingredients);
-        Log.d(getClass().getSimpleName(), "Writing:  " + Arrays.toString(ingredients));
 
-        Step[] steps = getSteps();
         dest.writeArray(steps);
     }
 

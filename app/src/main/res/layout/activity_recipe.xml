@@ -27,7 +27,15 @@
     <!--  Ingredients  -->
 
     <!--  Steps  -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/title_steps_section" />
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recipe_steps_rv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
     <!--  Steps  -->
 
 </LinearLayout>
