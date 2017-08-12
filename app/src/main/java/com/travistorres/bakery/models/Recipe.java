@@ -7,9 +7,9 @@ package com.travistorres.bakery.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.Nullable;
-import android.util.Log;
 
-import java.util.Arrays;
+import com.travistorres.bakery.utils.parcels.ParcelReaderUtil;
+
 import java.util.Collection;
 
 /**
@@ -77,23 +77,18 @@ public class Recipe implements Parcelable {
         setSteps(steps);
     }
 
+    /**
+     * Reconstructs a Recipe object using data acquired from a Parcel.
+     *
+     * @param parcel
+     */
     private Recipe(Parcel parcel) {
         id = parcel.readInt();
         name = parcel.readString();
         servings = parcel.readDouble();
         image = parcel.readString();
-        //  TODO-  create a parcel array reader method/utility
-        Object[] data = parcel.readArray(Ingredient.class.getClassLoader());
-        ingredients = new Ingredient[data.length];
-        for (int i = 0; i < data.length; ++i) {
-            ingredients[i] = (Ingredient) data[i];
-        }
-
-        data = parcel.readArray(Ingredient.class.getClassLoader());
-        steps = new Step[data.length];
-        for (int i = 0; i < data.length; ++i) {
-            steps[i] = (Step) data[i];
-        }
+        ingredients = (Ingredient[]) ParcelReaderUtil.readArrayFromParcel(parcel, Ingredient.class);
+        steps = (Step[]) ParcelReaderUtil.readArrayFromParcel(parcel, Step.class);
     }
 
     /**
