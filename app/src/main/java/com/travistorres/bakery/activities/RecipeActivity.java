@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.travistorres.bakery.R;
 import com.travistorres.bakery.models.Ingredient;
 import com.travistorres.bakery.models.Recipe;
+import com.travistorres.bakery.recyclerviews.adapters.RecipeIngredientAdapter;
 import com.travistorres.bakery.recyclerviews.viewholders.RecipeIngredientViewHolder;
 
 import java.util.ArrayList;
@@ -24,51 +25,6 @@ public class RecipeActivity extends AppCompatActivity {
 
     private TextView recipeTitleTextView;
     private RecyclerView ingredientsRecyclerView;
-
-    private class RecipeIngredientsAdapter extends RecyclerView.Adapter {
-        private List<Ingredient> ingredientList;
-
-        @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            Context context = parent.getContext();
-            LayoutInflater inflater = LayoutInflater.from(context);
-            View view = inflater.inflate(
-                    R.layout.recipe_ingredient,
-                    parent,
-                    false);
-
-            return new RecipeIngredientViewHolder(view);
-        }
-
-        @Override
-        public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-            Ingredient ingredient = ingredientList.get(position);
-            String ingredientName = ingredient.getIngredient();
-            String quantity = Double.toString(ingredient.getQuantity());
-            String unitOfMeasure = ingredient.getMeasure();
-
-            RecipeIngredientViewHolder view = (RecipeIngredientViewHolder) holder;
-            view.getIngredientNameTextView().setText(ingredientName);
-            view.getMeasurementQuantityTextView().setText(quantity);
-            view.getMeasurementTypeTextView().setText(unitOfMeasure);
-        }
-
-        public List<Ingredient> setIngredients(Ingredient[] ingredients) {
-            ingredientList = new ArrayList<Ingredient>();
-            for(Ingredient ingredient : ingredients) {
-                ingredientList.add(ingredient);
-            }
-
-            notifyDataSetChanged();
-
-            return ingredientList;
-        }
-
-        @Override
-        public int getItemCount() {
-            return ingredientList == null ? 0 : ingredientList.size();
-        }
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +37,7 @@ public class RecipeActivity extends AppCompatActivity {
         recipeTitleTextView = (TextView) findViewById(R.id.recipe_name);
         recipeTitleTextView.setText(recipe.getName());
 
-        RecipeIngredientsAdapter adapter = new RecipeIngredientsAdapter();
+        RecipeIngredientAdapter adapter = new RecipeIngredientAdapter();
         ingredientsRecyclerView = (RecyclerView) findViewById(R.id.recipe_ingredients_rv);
         ingredientsRecyclerView.setAdapter(adapter);
         ingredientsRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
