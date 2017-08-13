@@ -25,7 +25,7 @@
                 android:id="@+id/units_of_measure"
                 android:layout_width="@dimen/one_to_one_layout_width"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="@integer/units_of_measure_weight"
                 android:textSize="@dimen/small_text_size"
                 tools:text="3 Cups" />
 
@@ -33,7 +33,7 @@
                 android:id="@+id/ingredient"
                 android:layout_width="@dimen/one_to_one_layout_width"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"
+                android:layout_weight="@integer/ingredient_description_weight"
                 android:textAlignment="center"
                 android:textSize="@dimen/small_text_size"
                 android:textAllCaps="@bool/should_ingredients_be_capitalized"
