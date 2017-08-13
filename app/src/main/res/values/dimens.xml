@@ -7,4 +7,15 @@
 
     <dimen name="h1_text_size">20sp</dimen>
     <dimen name="h2_text_size">18sp</dimen>
+
+    <dimen name="small_text_size">10sp</dimen>
+
+    <dimen name="one_to_one_layout_width">0dp</dimen>
+
+    <!-- recipe_ingredient.xml -->
+    <dimen name="ingredient_margin_size">5dp</dimen>
+    <dimen name="ingredient_radius_of_card">10dp</dimen>
+    <dimen name="ingredient_vertical_padding">5dp</dimen>
+    <dimen name="ingredient_horizontal_padding">10dp</dimen>
+
 </resources>

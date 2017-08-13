@@ -3,6 +3,7 @@ package com.travistorres.bakery.activities;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
@@ -35,7 +36,7 @@ public class RecipeActivity extends AppCompatActivity {
     }
 
     private void setupIngredientsRecyclerView() {
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
         RecipeIngredientAdapter adapter = new RecipeIngredientAdapter();
 
         ingredientsRecyclerView = (RecyclerView) findViewById(R.id.recipe_ingredients_rv);

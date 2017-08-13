@@ -7,4 +7,6 @@
 
     <bool name="should_headings_be_capitalized">true</bool>
 
+    <bool name="should_ingredients_be_capitalized">true</bool>
+
 </resources>
