@@ -175,4 +175,15 @@ public class Ingredient
         dest.writeString(measure);
         dest.writeString(ingredient);
     }
+
+    /**
+     * Retrieves a description of the units of measurement.
+     *
+     * @return concatenation of measure and quantity
+     */
+    public String getUnitsOfMeasurement() {
+        return String.format("%s %s",
+                Double.toString(getQuantity()),
+                getMeasure());
+    }
 }

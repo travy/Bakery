@@ -123,4 +123,14 @@ public class IngredientTest {
 
         assertEquals(ingredientString, actualDescription);
     }
+
+    @Test
+    public void testGetUnitsOfMeasureContainsMeasurement() {
+        fail("Not implemented");
+    }
+
+    @Test
+    public void testGetUnitsOfMeasureContainsTheQuantity() {
+        fail("Not implemented");
+    }
 }
