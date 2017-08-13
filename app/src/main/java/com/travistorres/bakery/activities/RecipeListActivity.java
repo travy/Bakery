@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -104,7 +103,7 @@ public class RecipeListActivity extends AppCompatActivity
             LayoutInflater inflater = LayoutInflater.from(context);
             Resources res = getResources();
             View view = inflater.inflate(
-                    R.layout.activity_recipe_list_item,
+                    R.layout.recipe_list_item,
                     parent,
                     res.getBoolean(R.bool.should_attatch_to_root_while_inflating_recipe_item));
 
