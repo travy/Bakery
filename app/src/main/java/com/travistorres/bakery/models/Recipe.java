@@ -22,16 +22,14 @@ import java.util.Collection;
  * @version June 11, 2017
  */
 
-//  TODO:  document new parcelable implementation
 //  TODO:  test parcelability
-
 public class Recipe implements Parcelable {
-    private int id;
-    private String name;
     private double servings;
-    private String image;
     private Ingredient[] ingredients;
+    private int id;
     private Step[] steps;
+    private String image;
+    private String name;
 
     /**
      * Constructs a new Recipe.
@@ -45,7 +43,8 @@ public class Recipe implements Parcelable {
      *
      * @throws IllegalArgumentException When either the ingredients or steps is empty.
      */
-    public Recipe(int id, String name, double servings, @Nullable String image, Ingredient[] ingredients, Step[] steps) {
+    public Recipe(int id, String name, double servings, @Nullable String image,
+                  Ingredient[] ingredients, Step[] steps) {
         this.id = id;
         this.name = name;
         this.servings = servings;
@@ -67,7 +66,8 @@ public class Recipe implements Parcelable {
      *
      * @throws IllegalArgumentException When either the ingredients or steps is empty.
      */
-    public Recipe(int id, String name, double servings, @Nullable String image, Collection<Ingredient> ingredients, Collection<Step> steps) {
+    public Recipe(int id, String name, double servings, @Nullable String image,
+                  Collection<Ingredient> ingredients, Collection<Step> steps) {
         this.id = id;
         this.name = name;
         this.servings = servings;
@@ -260,34 +260,59 @@ public class Recipe implements Parcelable {
         return name;
     }
 
+    /**
+     * Builds a new Recipe from a Parcel.
+     *
+     */
     public static final Parcelable.Creator<Recipe> CREATOR = new Parcelable.Creator<Recipe>() {
-
+        /**
+         * Builds a single Recipe item.
+         *
+         * @param source
+         *
+         * @return Rebuilt Recipe from Parcel
+         */
         @Override
         public Recipe createFromParcel(Parcel source) {
             return new Recipe(source);
         }
 
+        /**
+         * Constructs an array of Recipes.
+         *
+         * @param size
+         *
+         * @return Array of recipes
+         */
         @Override
         public Recipe[] newArray(int size) {
             return new Recipe[size];
         }
     };
 
+    /**
+     * Describes the contents of the Parcel.
+     *
+     * @return zero
+     */
     @Override
     public int describeContents() {
         return 0;
     }
 
+    /**
+     * Stores contents of the Recipe into a parcel for use later.
+     *
+     * @param dest
+     * @param flags
+     */
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(id);
         dest.writeString(name);
         dest.writeDouble(servings);
         dest.writeString(image);
-
-        Ingredient[] ingredients = getIngredients();
         dest.writeArray(ingredients);
-
         dest.writeArray(steps);
     }
 
