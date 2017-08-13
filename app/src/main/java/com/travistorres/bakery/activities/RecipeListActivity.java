@@ -14,9 +14,9 @@ import android.support.v7.widget.RecyclerView;
 import com.travistorres.bakery.R;
 import com.travistorres.bakery.interfaces.OnRecipeListItemClickedListener;
 import com.travistorres.bakery.models.Recipe;
-import com.travistorres.bakery.networking.RecipeLoader;
+import com.travistorres.bakery.networking.loaders.RecipeLoader;
 import com.travistorres.bakery.recyclerviews.adapters.RecipeListAdapter;
-import com.travistorres.bakery.recyclerviews.loaders.RecipeLoaderCallback;
+import com.travistorres.bakery.networking.callbacks.RecipeLoaderCallback;
 
 import retrofit2.Callback;
 

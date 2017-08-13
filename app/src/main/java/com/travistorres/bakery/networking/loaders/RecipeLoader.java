@@ -2,10 +2,10 @@
  * Copyright (c) 2017 Travis Anthony Torres
  */
 
-package com.travistorres.bakery.networking;
+package com.travistorres.bakery.networking.loaders;
 
 import com.travistorres.bakery.models.Recipe;
-import com.travistorres.bakery.networking.bakery.BakeryResource;
+import com.travistorres.bakery.interfaces.BakeryResource;
 
 import java.util.List;
 

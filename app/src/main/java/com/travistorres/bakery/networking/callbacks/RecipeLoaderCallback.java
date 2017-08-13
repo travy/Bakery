@@ -2,7 +2,7 @@
  * Copyright (c) 2017 Travis Anthony Torres
  */
 
-package com.travistorres.bakery.recyclerviews.loaders;
+package com.travistorres.bakery.networking.callbacks;
 
 import android.content.Context;
 import android.widget.Toast;
