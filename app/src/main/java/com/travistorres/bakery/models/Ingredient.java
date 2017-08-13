@@ -16,7 +16,6 @@ import android.os.Parcelable;
  * @version June 10, 2017s
  */
 
-//  TODO:  write documentation
 //  TODO:  test parcelability
 
 public class Ingredient
@@ -113,29 +112,63 @@ public class Ingredient
         return this.ingredient + " requires " + this.quantity + " " + this.measure;
     }
 
+    /**
+     * Describes how to rebuild a Ingredient which has been restored from a parcel.
+     *
+     */
     public static Parcelable.Creator<Ingredient> CREATOR = new Parcelable.Creator<Ingredient> () {
+        /**
+         * Reconstructs an Ingredient through the private constructor.
+         *
+         * @param source
+         *
+         * @return Restored instance of an Ingredient
+         */
         @Override
         public Ingredient createFromParcel(Parcel source) {
             return new Ingredient(source);
         }
 
+        /**
+         * Allocates memory for the Ingredient of length size.
+         *
+         * @param size
+         *
+         * @return Array of Ingredients
+         */
         @Override
         public Ingredient[] newArray(int size) {
             return new Ingredient[size];
         }
     };
 
-    public Ingredient(Parcel parcel) {
+    /**
+     * Un-packages a parcel to re-construct the Ingredient.
+     *
+     * @param parcel
+     */
+    private Ingredient(Parcel parcel) {
         quantity = parcel.readDouble();
         measure = parcel.readString();
         ingredient = parcel.readString();
     }
 
+    /**
+     * Description of contents.
+     *
+     * @return zero
+     */
     @Override
     public int describeContents() {
         return 0;
     }
 
+    /**
+     * Packages all data fields so that they can be unpacked when need be.
+     *
+     * @param dest
+     * @param flags
+     */
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeDouble(quantity);
