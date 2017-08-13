@@ -17,7 +17,6 @@ import android.os.Parcelable;
  */
 
 //  TODO:  test parcelability
-
 public class Ingredient
         implements Parcelable {
     private double quantity;

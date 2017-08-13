@@ -17,16 +17,13 @@ import android.support.annotation.Nullable;
  * @version June 10, 2017
  */
 
-//  TODO:  write documentation
 //  TODO:  test parcelablility
-
-public class Step
-        implements Parcelable {
+public class Step implements Parcelable {
     private int id;
-    private String shortDescription;
     private String description;
-    private String videoUrl;
+    private String shortDescription;
     private String thumbnailUrl;
+    private String videoUrl;
 
     /**
      * Creates a Step in the recipe.
@@ -127,23 +124,51 @@ public class Step
         this.thumbnailUrl = thumbnailUrl;
     }
 
+    /**
+     * Represent the Step as a string by displaying the shortDescription.
+     *
+     * @return Short Description
+     */
     @Override
     public String toString() {
         return shortDescription;
     }
 
+    /**
+     * Provides a way to rebuild a Step from a Parcel.
+     *
+     */
     public static final Parcelable.Creator<Step> CREATOR = new Parcelable.Creator<Step>() {
+        /**
+         * Re-instantiates a Step from a Parcel.
+         *
+         * @param source
+         *
+         * @return Creates a new Step from the Parcel constructor
+         */
         @Override
         public Step createFromParcel(Parcel source) {
             return new Step(source);
         }
 
+        /**
+         * Creates an array of Steps
+         *
+         * @param size
+         *
+         * @return Array of Steps
+         */
         @Override
         public Step[] newArray(int size) {
             return new Step[size];
         }
     };
 
+    /**
+     * Reconstructs a Step from a parcel.
+     *
+     * @param parcel
+     */
     public Step(Parcel parcel) {
         id = parcel.readInt();
         shortDescription = parcel.readString();
@@ -152,11 +177,22 @@ public class Step
         thumbnailUrl = parcel.readString();
     }
 
+    /**
+     * Describes the contents of a Parcel.
+     *
+     * @return zero
+     */
     @Override
     public int describeContents() {
         return 0;
     }
 
+    /**
+     * Stores the contents of the Step into a Parcel for use later.
+     *
+     * @param dest
+     * @param flags
+     */
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(id);
