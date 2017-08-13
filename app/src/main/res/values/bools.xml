@@ -5,4 +5,6 @@
     <bool name="should_reverse_layout_for_recipes_list_layout_manager">false</bool>
     <bool name="should_attatch_to_root_while_inflating_recipe_item">false</bool>
 
+    <bool name="should_headings_be_capitalized">true</bool>
+
 </resources>
