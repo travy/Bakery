@@ -70,11 +70,10 @@ public class RecipeListAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         Recipe recipe = recipesList.get(position);
-        String numberOfIngredients = Integer.toString(recipe.getIngredients().length);
+        String numberOfIngredients = Integer.toString(recipe.getNumberOfIngredients());
         String numberOfServings = Double.toString(recipe.getServings());
         String recipeName = recipe.getName();
 
-        //  TODO:  replace recipe.getIngredients().length with recipe.numberOfIngredients()
         RecipeListItemViewHolder recipeView = (RecipeListItemViewHolder) holder;
         recipeView.getIngredientsCountTextView().setText(numberOfIngredients);
         recipeView.getServingsCountTextView().setText(numberOfServings);

@@ -291,5 +291,12 @@ public class Recipe implements Parcelable {
         dest.writeArray(steps);
     }
 
-    //  TODO:  implement numberOfIngredients() : int
+    /**
+     * Retrieves the number of ingredients required by the Recipe.
+     *
+     * @return number of Ingredients
+     */
+    public int getNumberOfIngredients() {
+        return ingredients.length;
+    }
 }
