@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent">
+
+    <ScrollView
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
+
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/recipe_name"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:textAllCaps="@bool/should_headings_be_capitalized"
+                android:textSize="@dimen/h1_text_size"
+                tools:text="Some Recipe" />
+
+            <!--  Ingredients  -->
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:text="@string/title_ingredients_section"
+                android:textAllCaps="@bool/should_headings_be_capitalized"
+                android:textSize="@dimen/h2_text_size" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recipe_ingredients_rv"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent" />
+            <!--  Ingredients  -->
+
+            <!--  Steps  -->
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:text="@string/title_steps_section"
+                android:textAllCaps="@bool/should_headings_be_capitalized"
+                android:textSize="@dimen/h2_text_size" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recipe_steps_rv"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent" />
+            <!--  Steps  -->
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</FrameLayout>
