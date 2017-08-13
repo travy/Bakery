@@ -1,54 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--  TODO:  Material Design  -->
-<!--  TODO:  Move hard coded data over to a resource file  -->
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/border"
-    android:orientation="vertical"
-    android:layout_width="150dp"
-    android:layout_height="150dp"
-    android:layout_margin="10dp">
 
-    <!--
-        Name for the recipe
-    -->
-    <TextView
-        android:id="@+id/recipe_name"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="Chocolate Chip Cookies" />
+        android:layout_margin="@dimen/card_view_margin_size"
+        card_view:cardCornerRadius="@dimen/card_view_radius">
 
-    <!--
-        Recipe Thumbnail
-    -->
-    <ImageView
-        android:id="@+id/recipe_thumbnail"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/ic_cupcake" />
-
-    <!--
-        Servings and Ingredients Counts
-    -->
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/ingredients_count"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            tools:text="48" />
+            android:orientation="horizontal"
+            android:padding="@dimen/card_view_padding">
 
-        <TextView
-            android:id="@+id/servings_count"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            tools:text="10" />
+            <ImageView
+                android:id="@+id/recipe_thumbnail"
+                android:layout_width="@dimen/one_to_one_layout_width"
+                android:layout_height="@dimen/thumbnail_height"
+                android:layout_weight="@integer/thumbnail_weight"
+                android:src="@drawable/ic_cupcake" />
 
-    </FrameLayout>
+            <LinearLayout
+                android:layout_width="@dimen/one_to_one_layout_width"
+                android:layout_height="wrap_content"
+                android:layout_weight="@integer/recipe_detail_weight"
+                android:orientation="vertical">
 
-</LinearLayout>
+                <TextView
+                    android:id="@+id/recipe_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/h1_text_size"
+                    tools:text="Chocolate Chip Cookies" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="@dimen/one_to_one_layout_width"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="@integer/enlarged_text_section_weight"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/title_ingredients_section"
+                            android:textAlignment="center"
+                            android:textSize="@dimen/h2_text_size"/>
+
+                        <TextView
+                            android:id="@+id/ingredients_count"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="center"
+                            android:textSize="@dimen/enlarged_number_text_size"
+                            tools:text="48" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="@dimen/one_to_one_layout_width"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="@integer/enlarged_text_section_weight"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/title_servings_section"
+                            android:textAlignment="center"
+                            android:textSize="@dimen/h2_text_size"/>
+
+                        <TextView
+                            android:id="@+id/servings_count"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="center"
+                            android:textSize="@dimen/enlarged_number_text_size"
+                            tools:text="10" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+</FrameLayout>

@@ -12,4 +12,9 @@
     <integer name="step_number_weight">1</integer>
     <integer name="step_description_weight">4</integer>
 
+    <!-- recipe_list_item.xml -->
+    <integer name="thumbnail_weight">1</integer>
+    <integer name="recipe_detail_weight">2</integer>
+    <integer name="enlarged_text_section_weight">1</integer>
+
 </resources>

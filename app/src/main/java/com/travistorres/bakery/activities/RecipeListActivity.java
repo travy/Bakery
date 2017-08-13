@@ -173,9 +173,8 @@ public class RecipeListActivity extends AppCompatActivity
         recipesListAdapter = new RecipesAdapter(this);
 
         Resources res = getResources();
-        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(
                 this,
-                res.getInteger(R.integer.grid_layout_recipes_list_num_columns),
                 LinearLayoutManager.VERTICAL,
                 res.getBoolean(R.bool.should_reverse_layout_for_recipes_list_layout_manager));
 
