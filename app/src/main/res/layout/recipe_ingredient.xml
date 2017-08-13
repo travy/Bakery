@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -27,6 +26,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="@integer/units_of_measure_weight"
                 android:textSize="@dimen/small_text_size"
+                android:textAlignment="center"
                 tools:text="3 Cups" />
 
             <TextView
@@ -34,7 +34,7 @@
                 android:layout_width="@dimen/one_to_one_layout_width"
                 android:layout_height="wrap_content"
                 android:layout_weight="@integer/ingredient_description_weight"
-                android:textAlignment="center"
+                android:textAlignment="textStart"
                 android:textSize="@dimen/small_text_size"
                 android:textAllCaps="@bool/should_ingredients_be_capitalized"
                 tools:text="Flour" />
@@ -43,4 +43,4 @@
 
     </android.support.v7.widget.CardView>
 
-</LinearLayout>
+</FrameLayout>
