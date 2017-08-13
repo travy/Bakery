@@ -60,14 +60,15 @@ public class RecipeIngredientAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         Ingredient ingredient = ingredientList.get(position);
-        String ingredientName = ingredient.getIngredient();
-        String quantity = Double.toString(ingredient.getQuantity());
-        String unitOfMeasure = ingredient.getMeasure();
+        String name = ingredient.getIngredient();
+        //  TODO- concatenation logic should be performed in ingredient model
+        String unitOfMeasure = String.format("%s %s",
+                Double.toString(ingredient.getQuantity()),
+                ingredient.getMeasure());
 
         RecipeIngredientViewHolder view = (RecipeIngredientViewHolder) holder;
-        view.getIngredientNameTextView().setText(ingredientName);
-        view.getMeasurementQuantityTextView().setText(quantity);
-        view.getMeasurementTypeTextView().setText(unitOfMeasure);
+        view.getIngredientNameTextView().setText(name);
+        view.getUnitsOfMeasureTextView().setText(unitOfMeasure);
     }
 
     /**

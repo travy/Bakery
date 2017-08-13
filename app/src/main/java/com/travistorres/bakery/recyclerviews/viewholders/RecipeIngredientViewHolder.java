@@ -21,9 +21,8 @@ import com.travistorres.bakery.R;
  */
 
 public class RecipeIngredientViewHolder extends RecyclerView.ViewHolder {
-    private TextView measurementTypeTextView;
-    private TextView measurementQuantityTextView;
     private TextView ingredientNameTextView;
+    private TextView unitsOfMeasureTextView;
 
     /**
      * Maps each of the user interface elements to an object so that they can be modified.
@@ -33,36 +32,25 @@ public class RecipeIngredientViewHolder extends RecyclerView.ViewHolder {
     public RecipeIngredientViewHolder(View itemView) {
         super(itemView);
 
-        measurementTypeTextView = (TextView) itemView.findViewById(R.id.ingredient_measurement_type);
-        measurementQuantityTextView = (TextView) itemView.findViewById(R.id.ingredient_measurement_qty);
         ingredientNameTextView = (TextView) itemView.findViewById(R.id.ingredient);
+        unitsOfMeasureTextView = (TextView) itemView.findViewById(R.id.units_of_measure);
     }
 
     /**
-     * Retrieves the interface object which displays the unit of measurement for the ingredient
+     * Retrieves the interface object responsible for displaying the name of the ingredient.
      *
-     * @return unit of measurement interface object
-     */
-    public TextView getMeasurementTypeTextView() {
-        return measurementTypeTextView;
-    }
-
-    /**
-     * Retrieves the interface object responsible for displaying the quantity of the ingredient
-     * that are needed.
-     *
-     * @return quantity for the recipe
-     */
-    public TextView getMeasurementQuantityTextView() {
-        return measurementQuantityTextView;
-    }
-
-    /**
-     * Retrieves the interface object responsible for displaying the name of the ingredeint.
-     *
-     * @return name of the ingredient
+     * @return Name of the ingredient
      */
     public TextView getIngredientNameTextView() {
         return ingredientNameTextView;
+    }
+
+    /**
+     * Retrieves the interface object responsible for displaying the units of measurement.
+     *
+     * @return Unit of measurement
+     */
+    public TextView getUnitsOfMeasureTextView() {
+        return unitsOfMeasureTextView;
     }
 }
