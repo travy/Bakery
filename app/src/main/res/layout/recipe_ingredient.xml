@@ -10,7 +10,7 @@
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/ingredient_margin_size"
+        android:layout_margin="@dimen/card_view_margin_size"
         card_view:cardCornerRadius="@dimen/ingredient_radius_of_card">
 
         <LinearLayout
@@ -18,8 +18,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/ingredient_vertical_padding"
-            android:paddingStart="@dimen/ingredient_horizontal_padding"
-            android:paddingEnd="@dimen/ingredient_horizontal_padding">
+            android:paddingStart="@dimen/card_view_padding"
+            android:paddingEnd="@dimen/card_view_padding">
 
             <TextView
                 android:id="@+id/units_of_measure"

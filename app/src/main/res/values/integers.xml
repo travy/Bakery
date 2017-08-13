@@ -4,4 +4,8 @@
 
     <integer name="grid_layout_recipes_list_num_columns">2</integer>
 
+    <!-- recipe_step.xml -->
+    <integer name="step_number_weight">1</integer>
+    <integer name="step_description_weight">4</integer>
+
 </resources>
