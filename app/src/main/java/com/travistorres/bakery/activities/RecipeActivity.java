@@ -7,9 +7,11 @@ import android.os.Bundle;
 
 import com.travistorres.bakery.R;
 import com.travistorres.bakery.fragments.RecipeStepsListFragment;
+import com.travistorres.bakery.interfaces.RecipeMasterDetailFlowInterface;
 import com.travistorres.bakery.models.Recipe;
 
-public class RecipeActivity extends AppCompatActivity {
+//  TODO- document
+public class RecipeActivity extends AppCompatActivity implements RecipeMasterDetailFlowInterface {
     private Recipe recipe;
     private RecipeStepsListFragment fragment;
 
@@ -21,14 +23,15 @@ public class RecipeActivity extends AppCompatActivity {
         Intent intent = getIntent();
         recipe = intent.getParcelableExtra(getString(R.string.extra_key_for_recipe));
 
-        Bundle bundle = new Bundle();
-        bundle.putParcelable(getString(R.string.extra_key_for_recipe), recipe);
         Fragment fragment = new RecipeStepsListFragment();
-        fragment.setArguments(bundle);
-
         getSupportFragmentManager()
                 .beginTransaction()
                 .add(R.id.recipe_steps_list_fragment, fragment)
                 .commit();
+    }
+
+    @Override
+    public Recipe getRecipe() {
+        return recipe;
     }
 }
