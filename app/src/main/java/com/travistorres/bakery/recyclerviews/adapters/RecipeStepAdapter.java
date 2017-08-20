@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 
 import com.travistorres.bakery.R;
 import com.travistorres.bakery.models.Step;
-import com.travistorres.bakery.recyclerviews.viewholders.RecipeStepViewHolder;
+import com.travistorres.bakery.recyclerviews.viewholders.RecipeStepListItemViewHolder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,7 +47,7 @@ public class RecipeStepAdapter extends RecyclerView.Adapter {
                 parent,
                 false);
 
-        return new RecipeStepViewHolder(view);
+        return new RecipeStepListItemViewHolder(view);
     }
 
     /**
@@ -62,7 +62,7 @@ public class RecipeStepAdapter extends RecyclerView.Adapter {
         String stepNumber = Integer.toString(position);
         String description = step.getShortDescription();
 
-        RecipeStepViewHolder view = (RecipeStepViewHolder) holder;
+        RecipeStepListItemViewHolder view = (RecipeStepListItemViewHolder) holder;
         view.getStepNumberTextView().setText(stepNumber);
         view.getStepDescriptionTextView().setText(description);
     }

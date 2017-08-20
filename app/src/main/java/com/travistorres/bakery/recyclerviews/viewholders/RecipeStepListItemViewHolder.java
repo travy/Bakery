@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.travistorres.bakery.R;
 
 /**
- * RecipeStepViewHolder
+ * RecipeStepListItemViewHolder
  *
  * Provides an interface for specifying the contents of a Steps tabs user interface.
  *
@@ -19,7 +19,7 @@ import com.travistorres.bakery.R;
  * @version August 12, 2017
  */
 
-public class RecipeStepViewHolder extends RecyclerView.ViewHolder {
+public class RecipeStepListItemViewHolder extends RecyclerView.ViewHolder {
     private TextView stepNumberTextView;
     private TextView stepDescriptionTextView;
 
@@ -28,7 +28,7 @@ public class RecipeStepViewHolder extends RecyclerView.ViewHolder {
      *
      * @param itemView
      */
-    public RecipeStepViewHolder(View itemView) {
+    public RecipeStepListItemViewHolder(View itemView) {
         super(itemView);
 
         stepNumberTextView = (TextView) itemView.findViewById(R.id.recipe_step_number);

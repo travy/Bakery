@@ -4,11 +4,13 @@ import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.travistorres.bakery.R;
 import com.travistorres.bakery.fragments.RecipeStepsListFragment;
 import com.travistorres.bakery.interfaces.RecipeMasterDetailFlowInterface;
 import com.travistorres.bakery.models.Recipe;
+import com.travistorres.bakery.models.Step;
 
 //  TODO- document
 public class RecipeActivity extends AppCompatActivity implements RecipeMasterDetailFlowInterface {
@@ -33,5 +35,10 @@ public class RecipeActivity extends AppCompatActivity implements RecipeMasterDet
     @Override
     public Recipe getRecipe() {
         return recipe;
+    }
+
+    @Override
+    public void onSelectedStep(Step step) {
+        Toast.makeText(this, step.getDescription(), Toast.LENGTH_SHORT).show();
     }
 }
