@@ -68,7 +68,7 @@ public class RecipeStepsListFragment extends Fragment {
 
     private void setupStepsRecyclerView(Context context, View view) {
         LinearLayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
-        RecipeStepAdapter adapter = new RecipeStepAdapter();
+        RecipeStepAdapter adapter = new RecipeStepAdapter(masterDetailInterface);
 
         stepsRecyclerView = (RecyclerView) view.findViewById(R.id.recipe_steps_rv);
         stepsRecyclerView.setLayoutManager(layoutManager);

@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.travistorres.bakery.R;
+import com.travistorres.bakery.interfaces.RecipeMasterDetailFlowInterface;
 import com.travistorres.bakery.models.Step;
 import com.travistorres.bakery.recyclerviews.viewholders.RecipeStepListItemViewHolder;
 
@@ -29,6 +30,16 @@ import java.util.List;
 
 public class RecipeStepAdapter extends RecyclerView.Adapter {
     private List<Step> stepsList;
+    private RecipeMasterDetailFlowInterface masterDetailFlowInterface;
+
+    /**
+     * Provides an interface for determining operations that need to be performed on the data set.
+     *
+     * @param selectableInterface
+     */
+    public RecipeStepAdapter(RecipeMasterDetailFlowInterface selectableInterface) {
+        masterDetailFlowInterface = selectableInterface;
+    }
 
     /**
      * Inflates a layout file to be used for the presentation of steps in the RecyclerView.
@@ -47,7 +58,7 @@ public class RecipeStepAdapter extends RecyclerView.Adapter {
                 parent,
                 false);
 
-        return new RecipeStepListItemViewHolder(view);
+        return new RecipeStepListItemViewHolder(view, masterDetailFlowInterface);
     }
 
     /**
