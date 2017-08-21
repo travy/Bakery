@@ -4,12 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:padding="@dimen/card_view_padding">
 
     <TextView
         android:id="@+id/step_short_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textSize="@dimen/h2_text_size"
         tools:text="Initial Step" />
 
     <TextView
