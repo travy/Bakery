@@ -70,6 +70,8 @@ public class RecipeStepsItemFragment extends RecipeMasterDetailFlowFragment
         if (isStepSpecified) {
             descriptionTextView.setText(step.getDescription());
             shortDescriptionTextView.setText(step.getShortDescription());
+            nextStepButton.setEnabled(masterDetailFlowInterface.hasNextStep());
+            previousStepButton.setEnabled(masterDetailFlowInterface.hasPreviousStep());
         }
     }
 
