@@ -12,6 +12,7 @@ import com.travistorres.bakery.fragments.RecipeStepsListFragment;
 import com.travistorres.bakery.interfaces.RecipeMasterDetailFlowInterface;
 import com.travistorres.bakery.models.Recipe;
 import com.travistorres.bakery.models.Step;
+import com.travistorres.bakery.utils.RecipeStepsIterator;
 
 //  TODO- document
 public class RecipeActivity extends AppCompatActivity
@@ -19,6 +20,7 @@ public class RecipeActivity extends AppCompatActivity
     private Recipe recipe;
     private RecipeStepsListFragment stepsListFragment;
     private RecipeStepsItemFragment stepDetailFragment;
+    private RecipeStepsIterator stepIterator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,11 +30,21 @@ public class RecipeActivity extends AppCompatActivity
         Intent intent = getIntent();
         recipe = intent.getParcelableExtra(getString(R.string.extra_key_for_recipe));
 
+        stepIterator = new RecipeStepsIterator(recipe.getSteps());
+
         FragmentManager fragmentManager = getSupportFragmentManager();
         stepsListFragment = (RecipeStepsListFragment) fragmentManager
                 .findFragmentById(R.id.fragment_recipe_steps_list);
         stepDetailFragment = (RecipeStepsItemFragment) fragmentManager
                 .findFragmentById(R.id.fragment_recipe_step_item);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        Step currentStep = stepIterator.getCurrent();
+        stepDetailFragment.setStep(currentStep);
     }
 
     @Override
@@ -42,26 +54,36 @@ public class RecipeActivity extends AppCompatActivity
 
     @Override
     public void onSelectedStep(Step step) {
+        if (step != stepIterator.getCurrent()) {
+            stepIterator.setCurrent(step);
+        }
+
         stepDetailFragment.setStep(step);
     }
 
     @Override
     public void onSelectNextStep() {
-        Toast.makeText(this, "Select Next Step", Toast.LENGTH_SHORT).show();
+        if (stepIterator.hasNext()) {
+            Step next = stepIterator.next();
+            stepDetailFragment.setStep(next);
+        }
     }
 
     @Override
     public void onSelectPreviousStep() {
-        Toast.makeText(this, "Select previous step", Toast.LENGTH_SHORT).show();
+        if (stepIterator.hasPrevious()) {
+            Step previous = stepIterator.previous();
+            stepDetailFragment.setStep(previous);
+        }
     }
 
     @Override
     public boolean hasNextStep() {
-        return false;
+        return stepIterator.hasNext();
     }
 
     @Override
     public boolean hasPreviousStep() {
-        return false;
+        return stepIterator.hasPrevious();
     }
 }
