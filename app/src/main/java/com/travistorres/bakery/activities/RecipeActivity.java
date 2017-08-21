@@ -29,15 +29,10 @@ public class RecipeActivity extends AppCompatActivity
         recipe = intent.getParcelableExtra(getString(R.string.extra_key_for_recipe));
 
         FragmentManager fragmentManager = getSupportFragmentManager();
-
-        stepsListFragment = new RecipeStepsListFragment();
-        fragmentManager
-                .beginTransaction()
-                .add(R.id.recipe_steps_list_fragment, stepsListFragment)
-                .commit();
-
+        stepsListFragment = (RecipeStepsListFragment) fragmentManager
+                .findFragmentById(R.id.fragment_recipe_steps_list);
         stepDetailFragment = (RecipeStepsItemFragment) fragmentManager
-                        .findFragmentById(R.id.fragment_recipe_step_item);
+                .findFragmentById(R.id.fragment_recipe_step_item);
     }
 
     @Override

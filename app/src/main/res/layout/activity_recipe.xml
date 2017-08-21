@@ -6,17 +6,18 @@
     android:layout_height="wrap_content"
     android:layout_width="match_parent">
 
-    <FrameLayout
-        android:id="@+id/recipe_steps_list_fragment"
-        android:layout_width="0dp"
+    <fragment
+        android:id="@+id/fragment_recipe_steps_list"
         android:layout_height="wrap_content"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:name="com.travistorres.bakery.fragments.RecipeStepsListFragment" />
 
     <fragment
         android:id="@+id/fragment_recipe_step_item"
-        android:name="com.travistorres.bakery.fragments.RecipeStepsItemFragment"
-        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="2" />
+        android:layout_weight="2"
+        android:layout_width="0dp"
+        android:name="com.travistorres.bakery.fragments.RecipeStepsItemFragment" />
 
 </LinearLayout>

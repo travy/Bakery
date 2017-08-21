@@ -26,19 +26,23 @@ public class RecipeStepsListFragment extends RecipeMasterDetailFlowFragment {
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_recipe_steps_list, container, false);
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
         recipe = masterDetailFlowInterface.getRecipe();
 
-        View view = inflater.inflate(R.layout.fragment_recipe_steps_list, container, false);
+        View view = getView();
         recipeTitleTextView = (TextView) view.findViewById(R.id.recipe_name);
         recipeTitleTextView.setText(recipe.getName());
 
         Context context = getContext();
         setupIngredientsRecyclerView(context, view);
         setupStepsRecyclerView(context, view);
-
-        return view;
     }
 
     private void setupIngredientsRecyclerView(Context context, View view) {
