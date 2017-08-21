@@ -14,7 +14,7 @@ import com.travistorres.bakery.R;
 import com.travistorres.bakery.interfaces.RecipeMasterDetailFlowInterface;
 import com.travistorres.bakery.models.Step;
 
-public class RecipeStepsItemFragment extends Fragment
+public class RecipeStepsItemFragment extends RecipeMasterDetailFlowFragment
         implements View.OnClickListener {
     private Button nextStepButton;
     private Button previousStepButton;
@@ -22,18 +22,6 @@ public class RecipeStepsItemFragment extends Fragment
     private TextView shortDescriptionTextView;
 
     private Step step;
-    private RecipeMasterDetailFlowInterface masterDetailFlowInterface;
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-
-        if (context instanceof RecipeMasterDetailFlowInterface) {
-            masterDetailFlowInterface = (RecipeMasterDetailFlowInterface) context;
-        } else {
-            throw new ClassCastException(context.toString() + " must implement " + RecipeMasterDetailFlowInterface.class.getName());
-        }
-    }
 
     @Nullable
     @Override

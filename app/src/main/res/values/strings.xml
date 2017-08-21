@@ -13,4 +13,6 @@
 
     <string name="error_could_not_load_movies" translatable="true">Was unable to load movies</string>
 
+    <string name="exception_non_recipe_master_detail_flow_class" translatable="false" formatted="true">%s must implement %s</string>
+
 </resources>

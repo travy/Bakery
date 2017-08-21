@@ -13,36 +13,22 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.travistorres.bakery.R;
-import com.travistorres.bakery.interfaces.RecipeMasterDetailFlowInterface;
 import com.travistorres.bakery.models.Recipe;
 import com.travistorres.bakery.recyclerviews.adapters.RecipeIngredientAdapter;
 import com.travistorres.bakery.recyclerviews.adapters.RecipeStepAdapter;
 
 //  TODO- document
-public class RecipeStepsListFragment extends Fragment {
+public class RecipeStepsListFragment extends RecipeMasterDetailFlowFragment {
     private TextView recipeTitleTextView;
     private RecyclerView ingredientsRecyclerView;
     private RecyclerView stepsRecyclerView;
     private Recipe recipe;
 
-    private RecipeMasterDetailFlowInterface masterDetailInterface;
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-
-        if (context instanceof RecipeMasterDetailFlowInterface) {
-            masterDetailInterface = (RecipeMasterDetailFlowInterface) context;
-        } else {
-            throw new ClassCastException(context.toString() + " must implement " + RecipeMasterDetailFlowInterface.class.getName());
-        }
-    }
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        recipe = masterDetailInterface.getRecipe();
+        recipe = masterDetailFlowInterface.getRecipe();
 
         View view = inflater.inflate(R.layout.fragment_recipe_steps_list, container, false);
         recipeTitleTextView = (TextView) view.findViewById(R.id.recipe_name);
@@ -68,7 +54,7 @@ public class RecipeStepsListFragment extends Fragment {
 
     private void setupStepsRecyclerView(Context context, View view) {
         LinearLayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
-        RecipeStepAdapter adapter = new RecipeStepAdapter(masterDetailInterface);
+        RecipeStepAdapter adapter = new RecipeStepAdapter(masterDetailFlowInterface);
 
         stepsRecyclerView = (RecyclerView) view.findViewById(R.id.recipe_steps_rv);
         stepsRecyclerView.setLayoutManager(layoutManager);
