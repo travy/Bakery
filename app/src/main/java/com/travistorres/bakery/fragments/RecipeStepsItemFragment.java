@@ -1,5 +1,6 @@
 package com.travistorres.bakery.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,15 +11,29 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.travistorres.bakery.R;
+import com.travistorres.bakery.interfaces.RecipeMasterDetailFlowInterface;
 import com.travistorres.bakery.models.Step;
 
-public class RecipeStepsItemFragment extends Fragment {
+public class RecipeStepsItemFragment extends Fragment
+        implements View.OnClickListener {
     private Button nextStepButton;
     private Button previousStepButton;
     private TextView descriptionTextView;
     private TextView shortDescriptionTextView;
 
     private Step step;
+    private RecipeMasterDetailFlowInterface masterDetailFlowInterface;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        if (context instanceof RecipeMasterDetailFlowInterface) {
+            masterDetailFlowInterface = (RecipeMasterDetailFlowInterface) context;
+        } else {
+            throw new ClassCastException(context.toString() + " must implement " + RecipeMasterDetailFlowInterface.class.getName());
+        }
+    }
 
     @Nullable
     @Override
@@ -35,6 +50,9 @@ public class RecipeStepsItemFragment extends Fragment {
         previousStepButton = (Button) view.findViewById(R.id.previous_step_button);
         descriptionTextView = (TextView) view.findViewById(R.id.step_description);
         shortDescriptionTextView = (TextView) view.findViewById(R.id.step_short_description);
+
+        nextStepButton.setOnClickListener(this);
+        previousStepButton.setOnClickListener(this);
 
         setStep(null);
     }
@@ -64,6 +82,15 @@ public class RecipeStepsItemFragment extends Fragment {
         if (isStepSpecified) {
             descriptionTextView.setText(step.getDescription());
             shortDescriptionTextView.setText(step.getShortDescription());
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v == nextStepButton) {
+            masterDetailFlowInterface.onSelectNextStep();
+        } else {
+            masterDetailFlowInterface.onSelectPreviousStep();
         }
     }
 }

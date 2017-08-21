@@ -1,7 +1,6 @@
 package com.travistorres.bakery.activities;
 
 import android.content.Intent;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,7 +14,8 @@ import com.travistorres.bakery.models.Recipe;
 import com.travistorres.bakery.models.Step;
 
 //  TODO- document
-public class RecipeActivity extends AppCompatActivity implements RecipeMasterDetailFlowInterface {
+public class RecipeActivity extends AppCompatActivity
+        implements RecipeMasterDetailFlowInterface {
     private Recipe recipe;
     private RecipeStepsListFragment stepsListFragment;
     private RecipeStepsItemFragment stepDetailFragment;
@@ -27,7 +27,6 @@ public class RecipeActivity extends AppCompatActivity implements RecipeMasterDet
 
         Intent intent = getIntent();
         recipe = intent.getParcelableExtra(getString(R.string.extra_key_for_recipe));
-
 
         FragmentManager fragmentManager = getSupportFragmentManager();
 
@@ -49,5 +48,25 @@ public class RecipeActivity extends AppCompatActivity implements RecipeMasterDet
     @Override
     public void onSelectedStep(Step step) {
         stepDetailFragment.setStep(step);
+    }
+
+    @Override
+    public void onSelectNextStep() {
+        Toast.makeText(this, "Select Next Step", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onSelectPreviousStep() {
+        Toast.makeText(this, "Select previous step", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public boolean hasNextStep() {
+        return false;
+    }
+
+    @Override
+    public boolean hasPreviousStep() {
+        return false;
     }
 }

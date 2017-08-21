@@ -324,4 +324,13 @@ public class Recipe implements Parcelable {
     public int getNumberOfIngredients() {
         return ingredients.length;
     }
+
+    /**
+     * Retrieves the number of steps required by the Recipe.
+     *
+     * @return number of steps
+     */
+    public int getNumberOfSteps() {
+        return steps.length;
+    }
 }
