@@ -7,8 +7,8 @@ package com.travistorres.bakery.networking.callbacks;
 import android.content.Context;
 import android.widget.Toast;
 
-import com.travistorres.bakery.R;
 import com.travistorres.bakery.models.Recipe;
+import com.travistorres.bakery.R;
 import com.travistorres.bakery.recyclerviews.adapters.RecipeListAdapter;
 
 import java.util.List;

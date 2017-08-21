@@ -9,9 +9,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.travistorres.bakery.R;
 import com.travistorres.bakery.interfaces.OnRecipeListItemClickedListener;
 import com.travistorres.bakery.models.Recipe;
+import com.travistorres.bakery.R;
 import com.travistorres.bakery.recyclerviews.adapters.RecipeListAdapter;
 
 /**

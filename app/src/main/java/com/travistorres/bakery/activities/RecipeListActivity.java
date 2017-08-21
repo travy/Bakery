@@ -6,17 +6,17 @@ package com.travistorres.bakery.activities;
 
 import android.content.Intent;
 import android.content.res.Resources;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import com.travistorres.bakery.R;
 import com.travistorres.bakery.interfaces.OnRecipeListItemClickedListener;
 import com.travistorres.bakery.models.Recipe;
-import com.travistorres.bakery.networking.loaders.RecipeLoader;
-import com.travistorres.bakery.recyclerviews.adapters.RecipeListAdapter;
 import com.travistorres.bakery.networking.callbacks.RecipeLoaderCallback;
+import com.travistorres.bakery.networking.loaders.RecipeLoader;
+import com.travistorres.bakery.R;
+import com.travistorres.bakery.recyclerviews.adapters.RecipeListAdapter;
 
 import retrofit2.Callback;
 

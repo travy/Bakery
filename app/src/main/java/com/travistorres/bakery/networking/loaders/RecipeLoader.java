@@ -4,16 +4,16 @@
 
 package com.travistorres.bakery.networking.loaders;
 
-import com.travistorres.bakery.models.Recipe;
 import com.travistorres.bakery.interfaces.BakeryResource;
+import com.travistorres.bakery.models.Recipe;
 
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
+import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.Converter;
 import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * RecipeLoader

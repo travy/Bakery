@@ -10,9 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.travistorres.bakery.R;
 import com.travistorres.bakery.interfaces.RecipeMasterDetailFlowInterface;
 import com.travistorres.bakery.models.Step;
+import com.travistorres.bakery.R;
 import com.travistorres.bakery.recyclerviews.viewholders.RecipeStepListItemViewHolder;
 
 import java.util.ArrayList;

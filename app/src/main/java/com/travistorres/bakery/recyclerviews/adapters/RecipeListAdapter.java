@@ -11,9 +11,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.travistorres.bakery.R;
 import com.travistorres.bakery.interfaces.OnRecipeListItemClickedListener;
 import com.travistorres.bakery.models.Recipe;
+import com.travistorres.bakery.R;
 import com.travistorres.bakery.recyclerviews.viewholders.RecipeListItemViewHolder;
 
 import java.util.List;

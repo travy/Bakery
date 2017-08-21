@@ -5,14 +5,13 @@
 package com.travistorres.bakery.recyclerviews.viewholders;
 
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import com.travistorres.bakery.R;
 import com.travistorres.bakery.interfaces.RecipeMasterDetailFlowInterface;
 import com.travistorres.bakery.models.Recipe;
 import com.travistorres.bakery.models.Step;
+import com.travistorres.bakery.R;
 
 /**
  * RecipeStepListItemViewHolder
