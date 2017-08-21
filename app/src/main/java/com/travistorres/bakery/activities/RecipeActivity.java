@@ -34,6 +34,7 @@ public class RecipeActivity extends AppCompatActivity
     private RecipeStepsItemFragment stepDetailFragment;
     private RecipeStepsIterator stepIterator;
     private RecipeStepsListFragment stepsListFragment;
+    private boolean usesDualPaneDisplay;
 
     /**
      * Preserves the state of the user interface as the Activity is destroyed and rebuilt.
@@ -52,12 +53,26 @@ public class RecipeActivity extends AppCompatActivity
         //  tracks the selected step
         stepIterator = new RecipeStepsIterator(recipe.getSteps());
 
-        //  acquires the Fragments for displaying the master detail view
+        //  determine if screen is separated between master and detail views
+        usesDualPaneDisplay = findViewById(R.id.steps_navigation_view_holder) == null;
+
         FragmentManager fragmentManager = getSupportFragmentManager();
-        stepsListFragment = (RecipeStepsListFragment) fragmentManager
-                .findFragmentById(R.id.fragment_recipe_steps_list);
-        stepDetailFragment = (RecipeStepsItemFragment) fragmentManager
-                .findFragmentById(R.id.fragment_recipe_step_item);
+        if (usesDualPaneDisplay) {
+            //  acquire fragments from the layout file
+            stepsListFragment = (RecipeStepsListFragment) fragmentManager
+                    .findFragmentById(R.id.fragment_recipe_steps_list);
+            stepDetailFragment = (RecipeStepsItemFragment) fragmentManager
+                    .findFragmentById(R.id.fragment_recipe_step_item);
+        } else {
+            //  manually manage fragments so only one is visible at a time
+            stepsListFragment = new RecipeStepsListFragment();
+            stepDetailFragment = new RecipeStepsItemFragment();
+
+            fragmentManager
+                    .beginTransaction()
+                    .replace(R.id.steps_navigation_view_holder, stepsListFragment)
+                    .commit();
+        }
     }
 
     /**
@@ -68,8 +83,10 @@ public class RecipeActivity extends AppCompatActivity
     protected void onResume() {
         super.onResume();
 
-        Step currentStep = stepIterator.getCurrent();
-        stepDetailFragment.setStep(currentStep);
+        if (usesDualPaneDisplay) {
+            Step currentStep = stepIterator.getCurrent();
+            stepDetailFragment.setStep(currentStep);
+        }
     }
 
     /**
@@ -92,6 +109,18 @@ public class RecipeActivity extends AppCompatActivity
     public void onSelectedStep(Step step) {
         if (step != stepIterator.getCurrent()) {
             stepIterator.setCurrent(step);
+        }
+
+        if (!usesDualPaneDisplay) {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager
+                    .beginTransaction()
+                    .replace(R.id.steps_navigation_view_holder, stepDetailFragment)
+                    .addToBackStack(null)
+                    .commit();
+
+            fragmentManager
+                    .executePendingTransactions();
         }
 
         stepDetailFragment.setStep(step);
