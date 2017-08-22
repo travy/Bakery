@@ -22,8 +22,8 @@ public class Step implements Parcelable {
     private int id;
     private String description;
     private String shortDescription;
-    private String thumbnailUrl;
-    private String videoUrl;
+    private String thumbnailURL;
+    private String videoURL;
 
     /**
      * Creates a Step in the recipe.
@@ -31,15 +31,15 @@ public class Step implements Parcelable {
      * @param id
      * @param shortDescription
      * @param description
-     * @param videoUrl
+     * @param videoURL
      * @param thumbnailUrl
      */
     public Step(int id, String shortDescription, String description,
-                @Nullable String videoUrl, @Nullable String thumbnailUrl) {
+                @Nullable String videoURL, @Nullable String thumbnailUrl) {
         this.id = id;
         setShortDescription(shortDescription);
         setDescription(description);
-        setVideoUrl(videoUrl);
+        setVideoUrl(videoURL);
         setThumbnailUrl(thumbnailUrl);
     }
 
@@ -91,10 +91,10 @@ public class Step implements Parcelable {
     /**
      * Retrieves the URL for the video.
      *
-     * @return videoUrl
+     * @return videoURL
      */
     public String getVideoUrl() {
-        return videoUrl;
+        return videoURL;
     }
 
     /**
@@ -103,7 +103,7 @@ public class Step implements Parcelable {
      * @param videoUrl
      */
     public void setVideoUrl(@Nullable String videoUrl) {
-        this.videoUrl = videoUrl;
+        this.videoURL = videoUrl;
     }
 
     /**
@@ -112,7 +112,7 @@ public class Step implements Parcelable {
      * @return thumbnail
      */
     public String getThumbnailUrl() {
-        return thumbnailUrl;
+        return thumbnailURL;
     }
 
     /**
@@ -121,7 +121,7 @@ public class Step implements Parcelable {
      * @param thumbnailUrl
      */
     public void setThumbnailUrl(@Nullable String thumbnailUrl) {
-        this.thumbnailUrl = thumbnailUrl;
+        this.thumbnailURL = thumbnailUrl;
     }
 
     /**
@@ -173,8 +173,8 @@ public class Step implements Parcelable {
         id = parcel.readInt();
         shortDescription = parcel.readString();
         description = parcel.readString();
-        videoUrl = parcel.readString();
-        thumbnailUrl = parcel.readString();
+        videoURL = parcel.readString();
+        thumbnailURL = parcel.readString();
     }
 
     /**
@@ -198,7 +198,7 @@ public class Step implements Parcelable {
         dest.writeInt(id);
         dest.writeString(shortDescription);
         dest.writeString(description);
-        dest.writeString(videoUrl);
-        dest.writeString(thumbnailUrl);
+        dest.writeString(videoURL);
+        dest.writeString(thumbnailURL);
     }
 }
