@@ -2,7 +2,7 @@
  * Copyright (c) 2017 Travis Anthony Torres
  */
 
-package com.travistorres.bakery.networking.bakery;
+package com.travistorres.bakery.interfaces;
 
 import com.travistorres.bakery.models.Recipe;
 

@@ -4,6 +4,8 @@
 
 package com.travistorres.bakery.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.support.annotation.Nullable;
 
 /**
@@ -15,12 +17,13 @@ import android.support.annotation.Nullable;
  * @version June 10, 2017
  */
 
-public class Step {
+//  TODO:  test parcelablility
+public class Step implements Parcelable {
     private int id;
-    private String shortDescription;
     private String description;
-    private String videoUrl;
-    private String thumbnailUrl;
+    private String shortDescription;
+    private String thumbnailURL;
+    private String videoURL;
 
     /**
      * Creates a Step in the recipe.
@@ -28,15 +31,15 @@ public class Step {
      * @param id
      * @param shortDescription
      * @param description
-     * @param videoUrl
+     * @param videoURL
      * @param thumbnailUrl
      */
     public Step(int id, String shortDescription, String description,
-                @Nullable String videoUrl, @Nullable String thumbnailUrl) {
+                @Nullable String videoURL, @Nullable String thumbnailUrl) {
         this.id = id;
         setShortDescription(shortDescription);
         setDescription(description);
-        setVideoUrl(videoUrl);
+        setVideoUrl(videoURL);
         setThumbnailUrl(thumbnailUrl);
     }
 
@@ -88,10 +91,10 @@ public class Step {
     /**
      * Retrieves the URL for the video.
      *
-     * @return videoUrl
+     * @return videoURL
      */
     public String getVideoUrl() {
-        return videoUrl;
+        return videoURL;
     }
 
     /**
@@ -100,7 +103,7 @@ public class Step {
      * @param videoUrl
      */
     public void setVideoUrl(@Nullable String videoUrl) {
-        this.videoUrl = videoUrl;
+        this.videoURL = videoUrl;
     }
 
     /**
@@ -109,7 +112,7 @@ public class Step {
      * @return thumbnail
      */
     public String getThumbnailUrl() {
-        return thumbnailUrl;
+        return thumbnailURL;
     }
 
     /**
@@ -118,11 +121,84 @@ public class Step {
      * @param thumbnailUrl
      */
     public void setThumbnailUrl(@Nullable String thumbnailUrl) {
-        this.thumbnailUrl = thumbnailUrl;
+        this.thumbnailURL = thumbnailUrl;
     }
 
+    /**
+     * Represent the Step as a string by displaying the shortDescription.
+     *
+     * @return Short Description
+     */
     @Override
     public String toString() {
         return shortDescription;
+    }
+
+    /**
+     * Provides a way to rebuild a Step from a Parcel.
+     *
+     */
+    public static final Parcelable.Creator<Step> CREATOR = new Parcelable.Creator<Step>() {
+        /**
+         * Re-instantiates a Step from a Parcel.
+         *
+         * @param source
+         *
+         * @return Creates a new Step from the Parcel constructor
+         */
+        @Override
+        public Step createFromParcel(Parcel source) {
+            return new Step(source);
+        }
+
+        /**
+         * Creates an array of Steps
+         *
+         * @param size
+         *
+         * @return Array of Steps
+         */
+        @Override
+        public Step[] newArray(int size) {
+            return new Step[size];
+        }
+    };
+
+    /**
+     * Reconstructs a Step from a parcel.
+     *
+     * @param parcel
+     */
+    public Step(Parcel parcel) {
+        id = parcel.readInt();
+        shortDescription = parcel.readString();
+        description = parcel.readString();
+        videoURL = parcel.readString();
+        thumbnailURL = parcel.readString();
+    }
+
+    /**
+     * Describes the contents of a Parcel.
+     *
+     * @return zero
+     */
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    /**
+     * Stores the contents of the Step into a Parcel for use later.
+     *
+     * @param dest
+     * @param flags
+     */
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeString(shortDescription);
+        dest.writeString(description);
+        dest.writeString(videoURL);
+        dest.writeString(thumbnailURL);
     }
 }

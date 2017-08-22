@@ -297,4 +297,9 @@ public class RecipeTest {
         recipe.setImage(newImage);
         assertEquals(newImage, recipe.getImage());
     }
+
+    @Test
+    public void testGetNumberOfIngredientsReturnsCorrectValue() {
+        fail("Not implemented.");
+    }
 }

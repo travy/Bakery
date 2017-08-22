@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+
+    <integer name="grid_layout_recipes_list_num_columns">2</integer>
+
+    <!-- recipe_ingredient.xml -->
+    <integer name="units_of_measure_weight">1</integer>
+    <integer name="ingredient_description_weight">3</integer>
+
+    <!-- recipe_step.xml -->
+    <integer name="step_number_weight">1</integer>
+    <integer name="step_description_weight">4</integer>
+
+    <!-- recipe_list_item.xml -->
+    <integer name="thumbnail_weight">1</integer>
+    <integer name="recipe_detail_weight">2</integer>
+    <integer name="enlarged_text_section_weight">1</integer>
+
+</resources>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent">
+
+    <android.support.v7.widget.CardView
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/card_view_margin_size"
+        android:layout_width="match_parent"
+        card_view:cardCornerRadius="@dimen/ingredient_radius_of_card">
+
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:padding="@dimen/ingredient_vertical_padding"
+            android:paddingEnd="@dimen/card_view_padding"
+            android:paddingStart="@dimen/card_view_padding">
+
+            <TextView
+                android:id="@+id/units_of_measure"
+                android:layout_height="wrap_content"
+                android:layout_weight="@integer/units_of_measure_weight"
+                android:layout_width="@dimen/one_to_one_layout_width"
+                android:textAlignment="center"
+                android:textSize="@dimen/small_text_size"
+                tools:text="3 Cups" />
+
+            <TextView
+                android:id="@+id/ingredient"
+                android:layout_height="wrap_content"
+                android:layout_weight="@integer/ingredient_description_weight"
+                android:layout_width="@dimen/one_to_one_layout_width"
+                android:textAlignment="textStart"
+                android:textAllCaps="@bool/should_ingredients_be_capitalized"
+                android:textSize="@dimen/small_text_size"
+                tools:text="Flour" />
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+</FrameLayout>

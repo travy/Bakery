@@ -1,7 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="app_bar_height">200dp</dimen>
     <dimen name="item_width">200dp</dimen>
     <dimen name="text_margin">16dp</dimen>
+
+    <dimen name="h1_text_size">20sp</dimen>
+    <dimen name="h2_text_size">18sp</dimen>
+
+    <dimen name="global_text_size">15sp</dimen>
+    <dimen name="small_text_size">10sp</dimen>
+
+    <dimen name="one_to_one_layout_width">0dp</dimen>
+
+    <dimen name="card_view_margin_size">5dp</dimen>
+    <dimen name="card_view_radius">4dp</dimen>
+    <dimen name="card_view_padding">10dp</dimen>
+
+    <!-- recipe_ingredient.xml -->
+    <dimen name="ingredient_radius_of_card">10dp</dimen>
+    <dimen name="ingredient_vertical_padding">5dp</dimen>
+
+    <!-- recipe_list_item.xml -->
+    <dimen name="thumbnail_height">100dp</dimen>
+    <dimen name="enlarged_number_text_size">35sp</dimen>
+
 </resources>
